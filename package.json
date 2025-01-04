@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.4",
-    "@fontsource/onest": "^5.1.1",
+    "@fontsource/poppins": "^5.1.1",
+    "@iconify-json/fa6-brands": "^1.2.5",
     "@iconify-json/proicons": "^1.2.11",
     "astro": "^5.1.2",
     "astro-icon": "^1.1.5",
