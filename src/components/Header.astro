@@ -1,0 +1,99 @@
+---
+import { Icon } from "astro-icon/components";
+
+const itemsMenu = [
+  {
+    name: "Inicio",
+    href: "#home",
+  },
+  {
+    name: "Experiencia",
+    href: "#experience",
+  },
+  {
+    name: "Proyectos",
+    href: "#proyects",
+  },
+  {
+    name: "Contacto",
+    href: "#contact",
+  },
+];
+---
+
+<header class="flex justify-around items-center h-[10vh]">
+  <div class="text-black text-2xl md:text-3xl">
+    <a href="/"> Andrés Felipe Mejía Restrepo </a>
+  </div>
+  <div class="relative inline-block">
+    <button
+      id="openMenu"
+      aria-label="Open Menu"
+      class="2xl:hidden xl:hidden text-black flex text-xl flex-col justify-between"
+    >
+      <Icon name="proicons:menu" class="size-8" />
+    </button>
+    <button
+      id="closeMenu"
+      aria-label="Close Menu"
+      class="hidden text-black text-xl flex-col justify-between"
+    >
+      <Icon name="proicons:cancel" class="size-8" />
+    </button>
+
+  <div
+    class="hidden xl:flex 2xl:flex"
+    id="menu"
+  >
+    <ul
+      class="absolute top-full right-0 bg-white flex xl:flex-row xl:shadow-none xl:relative xl:top-0 flex-col gap-5 p-4 shadow-md "
+    >
+      {
+        itemsMenu.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-xl"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const openMenu = document.getElementById("openMenu");
+    const menu = document.getElementById("menu");
+    const close = document.getElementById("closeMenu");
+    const optionsMenu = document.querySelectorAll("#menu li a");
+
+    function closeMenu() {
+      menu?.classList.toggle("hidden");
+    }
+
+    openMenu?.addEventListener("click", () => {
+      close?.classList.toggle("hidden");
+      openMenu?.classList.toggle("hidden");
+      closeMenu();
+    });
+
+    close?.addEventListener("click", () => {
+      openMenu?.classList.toggle("hidden");
+      close?.classList.toggle("hidden");
+      closeMenu();
+    });
+
+    optionsMenu.forEach((option) => {
+      option.addEventListener("click", () => {
+        close?.classList.toggle("hidden");
+        openMenu?.classList.toggle("hidden");
+        closeMenu();
+      });
+    });
+  });
+</script>
