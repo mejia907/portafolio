@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+import profile from "../assets/sobre_mi.webp";
+import { Icon } from "astro-icon/components";
+
+const itemsSkills = [
+  {
+    name: "PHP",
+    icon: "devicon:php",
+  },
+  {
+    name: "JavaScript",
+    icon: "devicon:javascript",
+  },
+  {
+    name: "TypeScript",
+    icon: "devicon:typescript",
+  },
+  {
+    name: "React",
+    icon: "devicon:react",
+  },
+  {
+    name: "Node JS",
+    icon: "devicon:nodejs",
+  },
+  {
+    name: "HTML",
+    icon: "devicon:html5",
+  },
+  {
+    name: "jQuery",
+    icon: "devicon:jquery",
+  },
+  {
+    name: "CSS",
+    icon: "devicon:css3",
+  },
+  {
+    name: "Tailwind",
+    icon: "devicon:tailwindcss",
+  },
+];
+---
+
+<section id="about" class="pt-[4vh] h-[75vh] md:mx-40 mx-8 my-0 min-h-fit">
+  <h1
+    class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10 text-center"
+  >
+    Sobre Mí
+  </h1>
+  <div class="flex md:gap-16 gap-0 md:pt-5 pt-0 xl:flex-row flex-col">
+    <div class="mx-auto my-0">
+      <Image
+        src={profile}
+        alt="Andrés Felipe Mejía Restrepo"
+        class="hidden md:block rounded-2xl md:h-96 md:w-96 lg:h-[80%] lg:w-[55rem] 2xl:h-[92%] 2xl:w-[30rem] w-44"
+      />
+    </div>
+    <div class="flex justify-center flex-col">
+      <div class="flex gap-8 mb-8 mt-8 md:flex-row flex-col">
+        <div
+          class="p-6 flex flex-1 border border-gray-900 rounded-2xl text-center flex-col items-center"
+        >
+          <Icon name="hugeicons:ai-user" class="h-10 w-10" />
+          <h3 class="pb-2 font-bold">Experiencia</h3>
+          <p class="pb-2 text-gray-600">10+ años desarrollo de backend</p>
+          <p class="text-gray-600">4+ años desarrollo de frontend</p>
+        </div>
+        <div
+          class="p-6 flex flex-1 border border-gray-900 rounded-2xl text-center flex-col items-center"
+        >
+          <Icon name="fluent-mdl2:education" class="h-10 w-10" />
+          <h3 class="pb-2 font-bold">Educación</h3>
+          <p class="pb-2 text-gray-600 flex">Ingeniería de Sistemas</p>
+          <p class="text-gray-600 flex">
+            Tecnólogo en Análisis y desarrollo de Sistemas de Información
+          </p>
+        </div>
+      </div>
+      <div class="text-container text-justify">
+        <p>
+          Como ingeniero en sistemas tengo los conocimientos, las habilidades y
+          las características personales, para mi adecuado desempeño en las
+          actividades de análisis, diseño y programación de un sistema de
+          información.
+        </p>
+      </div>
+      <div
+        class="flex flex-wrap justify-center mx-auto lg:w-full md:w-5/6 gap-10 pt-5"
+      >
+        {
+          itemsSkills.map((item) => (
+            <div class="flex flex-1 text-center flex-col items-center rounded-2xl">
+              <Icon
+                name={item.icon}
+                class="lg:h-10 lg:w-12 2xl:h-16 2xl:w-16 h-10 w-10 transition duration-200 ease-in-out hover:scale-110"
+              />
+              <span class="text-gray-700 text-sm">{item.name}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -14,9 +14,18 @@ importers:
       '@fontsource/poppins':
         specifier: ^5.1.1
         version: 5.1.1
+      '@iconify-json/devicon':
+        specifier: ^1.2.11
+        version: 1.2.11
       '@iconify-json/fa6-brands':
         specifier: ^1.2.5
         version: 1.2.5
+      '@iconify-json/fluent-mdl2':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/hugeicons':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@iconify-json/proicons':
         specifier: ^1.2.11
         version: 1.2.11
@@ -376,8 +385,17 @@ packages:
   '@fontsource/poppins@5.1.1':
     resolution: {integrity: sha512-PQVKHGQOK+UpVNPzTFF9Z9ez3CIDkunfvRXGH95hiDoqWJc1shW4JFqe4tEoqnq7RtZaYrw9aWQq58L4eny5xg==}
 
+  '@iconify-json/devicon@1.2.11':
+    resolution: {integrity: sha512-siDWSFqmPKOYiMvgixqsZ/0rbUXae1M7gF14vefBtFuKXJkTvr4WPzbv1ARc7rqQlkU8XZPyH1edCXO4uToTyw==}
+
   '@iconify-json/fa6-brands@1.2.5':
     resolution: {integrity: sha512-U/iFfziz6jSN9zArOJZYTtoj2tQyh6MxPdI8M84DQ2kEulPaj8j+h9bqvjmzszNHmD7v+kmmKd/MLkMKk+3Zuw==}
+
+  '@iconify-json/fluent-mdl2@1.2.1':
+    resolution: {integrity: sha512-zFgd1V9r0a+mqA46Z4mOoSf6PbQbhYnY9Uhtpjl3xvw03doNolh4apMtsZoLlC/Y7wO2uj306MgziaqwWdNMwg==}
+
+  '@iconify-json/hugeicons@1.2.3':
+    resolution: {integrity: sha512-EujzAC9jlyJY+iFA2ehXoTgGfjKxMMD9xWGQbbo0MlqZelkg/dmENlqIMJjLy9B1sZltw1ol5eYhhzY69TwkQw==}
 
   '@iconify-json/proicons@1.2.11':
     resolution: {integrity: sha512-e9yGjoTDMr1NVPe4Szerhzq/uhi23GbxmEk4P9OB9cSN6mdvB9dIVXXLRu9YAa1Y7WAUCKn3dp/3FkxvNAtzvg==}
@@ -2442,7 +2460,19 @@ snapshots:
 
   '@fontsource/poppins@5.1.1': {}
 
+  '@iconify-json/devicon@1.2.11':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/fa6-brands@1.2.5':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/fluent-mdl2@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/hugeicons@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
