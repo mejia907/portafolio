@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+const { image, title, description, url, github } = Astro.props;
+---
+
+<div
+  class="flex flex-col h-full bg-white border border-slate-200 shadow shadow-slate-950/5 rounded-2xl overflow-hidden"
+>
+  <Image src={image} alt={title} class="object-cover h-full w-full" />
+  <div class="flex flex-col p-6">
+    <div class="flex-1">
+      <header class="mb-2">
+        <h2 class="text-xl font-extrabold leading-snug">
+          <a
+            class="text-slate-900 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300"
+            href="#0"
+          >
+            {title}
+          </a>
+        </h2>
+      </header>
+      <div class="text-sm text-slate-600 mb-3">
+        <p>
+          {description}
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-wrap lg:w-full md:w-5/6 gap-2 pb-5">
+      <slot />
+    </div>
+    <div class="flex justify-end">
+      {
+        github && (
+          <button
+            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-black font-medium rounded-full text-sm px-4 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600"
+            onclick={`window.open('${github}', '_blank')`}
+          >
+            <Icon
+              name="fa6-brands:github"
+              class="h-6 w-6 cursor-pointer inline-block align-middle mr-1"
+            />
+            Ver código
+          </button>
+        )
+      }
+      {
+        url && (
+          <button
+            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-black font-medium rounded-full text-sm px-4 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600"
+            onclick={`window.open('${url}', '_blank')`}
+          >
+            <Icon
+              name="uim:arrow-up-right"
+              class="h-6 w-6 cursor-pointer inline-block align-middle"
+            />
+            Ver ahora
+          </button>
+        )
+      }
+    </div>
+  </div>
+</div>

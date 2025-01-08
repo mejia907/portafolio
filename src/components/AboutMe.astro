@@ -43,18 +43,21 @@ const itemsSkills = [
 ];
 ---
 
-<section id="about" class="pt-[4vh] h-[75vh] md:mx-40 mx-8 my-0 min-h-fit">
-  <h1
-    class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10 text-center"
-  >
-    Sobre Mí
-  </h1>
+<section id="about" class="pt-[4vh] md:mx-40 mx-8 my-0 min-h-fit">
+  <div class="text-center m-2 gap-2 flex items-center justify-center">
+    <Icon name="hugeicons:user-square" class="h-8 w-8 2xl:h-10 2xl:w-10" />
+    <h1
+      class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10 text-center"
+    >
+      Sobre Mí
+    </h1>
+  </div>
   <div class="flex md:gap-16 gap-0 md:pt-5 pt-0 xl:flex-row flex-col">
     <div class="mx-auto my-0">
       <Image
         src={profile}
         alt="Andrés Felipe Mejía Restrepo"
-        class="hidden md:block rounded-2xl md:h-96 md:w-96 lg:h-[80%] lg:w-[55rem] 2xl:h-[92%] 2xl:w-[30rem] w-44"
+        class="hidden md:block rounded-2xl md:h-96 md:w-96 lg:h-[80%] lg:w-[55rem] 2xl:h-[94%] 2xl:w-[24rem] w-44"
       />
     </div>
     <div class="flex justify-center flex-col">
@@ -91,10 +94,10 @@ const itemsSkills = [
       >
         {
           itemsSkills.map((item) => (
-            <div class="flex flex-1 text-center flex-col items-center rounded-2xl">
+            <div class="flex flex-1 text-center flex-col items-center rounded-2xl transition duration-200 ease-in-out hover:scale-110">
               <Icon
                 name={item.icon}
-                class="lg:h-10 lg:w-12 2xl:h-16 2xl:w-16 h-10 w-10 transition duration-200 ease-in-out hover:scale-110"
+                class="lg:h-10 lg:w-12 2xl:h-16 2xl:w-16 h-10 w-10"
               />
               <span class="text-gray-700 text-sm">{item.name}</span>
             </div>

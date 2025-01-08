@@ -1,0 +1,221 @@
+---
+import { Icon } from "astro-icon/components";
+import Card from "./common/Card.astro";
+import sintraipsu from "../assets/images/sintraipsu.webp";
+import cerrajero from "../assets/images/cerrajero.webp";
+import tasksoft from "../assets/images/tasksoft.webp";
+import api_games from "../assets/images/api_games.webp";
+import poke_api from "../assets/images/poke_api.webp";
+import cinemapedia from "../assets/images/cinemapedia.webp";
+---
+
+<section id="projects" class="pt-[4vh] md:mx-40 mx-8 my-0 min-h-fit">
+  <div class="text-center m-2 gap-2 flex items-center justify-center">
+    <Icon
+      name="hugeicons:source-code-square"
+      class="h-8 w-8 2xl:h-10 2xl:w-10"
+    />
+    <h1
+      class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10"
+    >
+      Proyectos
+    </h1>
+  </div>
+  <div
+    class="max-w-xs mx-auto grid gap-6 lg:grid-cols-2 2xl:grid-cols-3 items-start lg:max-w-none"
+  >
+    <Card
+      image={sintraipsu}
+      title="Sintraipsu"
+      description="Landing page y administrador de contenido que permite la gestión de afiliados, integrantes del sindicato, noticias y celebraciones."
+      url="https://sintraipsu.com/"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:react"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        React
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:tailwindcss"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Tailwind
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:nodejs"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Node JS
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:prisma"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Prisma
+      </span>
+    </Card>
+
+    <Card
+      image={cerrajero}
+      title="Cerrajero Luis 24 Horas"
+      description="Landing page para presentar los servicios de una cerrajero, permitiendo el redireccionamiento a sus redes sociales, Whatsapp y teléfono de contacto."
+      url="https://cerrajeroluis24horas.com/"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:astro"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Astro
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:tailwindcss"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Tailwind
+      </span>
+    </Card>
+  </div>
+
+  <div class="text-center m-2 gap-2 flex items-center justify-center">
+    <Icon name="hugeicons:source-code" class="h-8 w-8 2xl:h-10 2xl:w-10" />
+    <h1
+      class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10"
+    >
+      Otros Proyectos
+    </h1>
+  </div>
+  <div
+    class="max-w-xs mx-auto grid gap-6 lg:grid-cols-2 2xl:grid-cols-3 items-start lg:max-w-none"
+  >
+    <Card
+      image={tasksoft}
+      title="Task-Soft"
+      description="Aplicativo implementado con Laravel Livewire el cual permite crear, editar, compartir y eliminar tareas."
+      github="https://github.com/mejia907/tasksoft/"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:laravel"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Laravel
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="devicon-plain:livewire"
+          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
+        />
+        Livewire
+      </span>
+    </Card>
+
+    <Card
+      image={api_games}
+      title="API Games"
+      description="Aplicativo desarrollado con Angular (14), que permite consumir una API de video juegos (Freetogame) con NestJS."
+      github="https://github.com/mejia907/api-games"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:angular"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Angular
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="devicon-plain:nestjs"
+          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
+        />
+        NestJS
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:tailwindcss"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Tailwind
+      </span>
+    </Card>
+
+    <Card
+      image={poke_api}
+      title="Poke API"
+      description="Aplicación realizada con el framework Qwik, utilizando OpenAI e implmentando el diseño con Tailwind."
+      github="https://github.com/mejia907/pokeapp-qwik"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="devicon-plain:qwik"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Qwik
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:tailwindcss"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Tailwind
+      </span>
+    </Card>
+    <Card
+      image={cinemapedia}
+      title="Cinemapedia"
+      description="Aplicativo desarrollado en Flutter para conocer la cartelera de un cinema a través de una API, permite ver detalle de cada película y definir las favoritas."
+      github="https://github.com/mejia907/cinemapedia"
+    >
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="lineicons:flutter"
+          class="h-7 w-7 text-gray-600 inline-block align-middle"
+        />
+        Flutter
+      </span>
+      <span
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
+      >
+        <Icon
+          name="devicon-plain:dart"
+          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
+        />
+        Dart
+      </span>
+    </Card>
+  </div>
+</section>

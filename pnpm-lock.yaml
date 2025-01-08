@@ -17,6 +17,9 @@ importers:
       '@iconify-json/devicon':
         specifier: ^1.2.11
         version: 1.2.11
+      '@iconify-json/devicon-plain':
+        specifier: ^1.2.10
+        version: 1.2.10
       '@iconify-json/fa6-brands':
         specifier: ^1.2.5
         version: 1.2.5
@@ -26,9 +29,15 @@ importers:
       '@iconify-json/hugeicons':
         specifier: ^1.2.3
         version: 1.2.3
+      '@iconify-json/lineicons':
+        specifier: ^1.2.4
+        version: 1.2.4
       '@iconify-json/proicons':
         specifier: ^1.2.11
         version: 1.2.11
+      '@iconify-json/uim':
+        specifier: ^1.2.3
+        version: 1.2.3
       astro:
         specifier: ^5.1.2
         version: 5.1.2(@types/node@22.10.5)(jiti@1.21.7)(rollup@4.29.1)(typescript@5.7.2)(yaml@2.7.0)
@@ -385,6 +394,9 @@ packages:
   '@fontsource/poppins@5.1.1':
     resolution: {integrity: sha512-PQVKHGQOK+UpVNPzTFF9Z9ez3CIDkunfvRXGH95hiDoqWJc1shW4JFqe4tEoqnq7RtZaYrw9aWQq58L4eny5xg==}
 
+  '@iconify-json/devicon-plain@1.2.10':
+    resolution: {integrity: sha512-/qRghHZcxhmHi+32x78D4zbayOBitnoq/PsVqj2J4WOl6Ebbx5whkTXmzbR78oCDEEMib3lmqUHnk8C3OHBKlw==}
+
   '@iconify-json/devicon@1.2.11':
     resolution: {integrity: sha512-siDWSFqmPKOYiMvgixqsZ/0rbUXae1M7gF14vefBtFuKXJkTvr4WPzbv1ARc7rqQlkU8XZPyH1edCXO4uToTyw==}
 
@@ -397,8 +409,14 @@ packages:
   '@iconify-json/hugeicons@1.2.3':
     resolution: {integrity: sha512-EujzAC9jlyJY+iFA2ehXoTgGfjKxMMD9xWGQbbo0MlqZelkg/dmENlqIMJjLy9B1sZltw1ol5eYhhzY69TwkQw==}
 
+  '@iconify-json/lineicons@1.2.4':
+    resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
+
   '@iconify-json/proicons@1.2.11':
     resolution: {integrity: sha512-e9yGjoTDMr1NVPe4Szerhzq/uhi23GbxmEk4P9OB9cSN6mdvB9dIVXXLRu9YAa1Y7WAUCKn3dp/3FkxvNAtzvg==}
+
+  '@iconify-json/uim@1.2.3':
+    resolution: {integrity: sha512-rCOU5nrRbcg5s5ZhL9Esoj/acyPeb6hPetVQYMJ18/wJwYsQtcwrFJXy6XOwyFs9TTLnjFGynLJO/TYihOQtDg==}
 
   '@iconify/tools@4.1.1':
     resolution: {integrity: sha512-Hybu/HGhv6T8nLQhiG9rKx+ekF7NNpPOEQAy7JRSKht3s3dcFSsPccYzk24Znc9MTxrR6Gak3cg6CPP5dyvS2Q==}
@@ -2460,6 +2478,10 @@ snapshots:
 
   '@fontsource/poppins@5.1.1': {}
 
+  '@iconify-json/devicon-plain@1.2.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/devicon@1.2.11':
     dependencies:
       '@iconify/types': 2.0.0
@@ -2476,7 +2498,15 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/lineicons@1.2.4':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/proicons@1.2.11':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/uim@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
