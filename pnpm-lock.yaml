@@ -29,6 +29,9 @@ importers:
       '@iconify-json/hugeicons':
         specifier: ^1.2.3
         version: 1.2.3
+      '@iconify-json/iconoir':
+        specifier: ^1.2.7
+        version: 1.2.7
       '@iconify-json/lineicons':
         specifier: ^1.2.4
         version: 1.2.4
@@ -408,6 +411,9 @@ packages:
 
   '@iconify-json/hugeicons@1.2.3':
     resolution: {integrity: sha512-EujzAC9jlyJY+iFA2ehXoTgGfjKxMMD9xWGQbbo0MlqZelkg/dmENlqIMJjLy9B1sZltw1ol5eYhhzY69TwkQw==}
+
+  '@iconify-json/iconoir@1.2.7':
+    resolution: {integrity: sha512-UDlx2WeWHqopfKRsjOta6fn/KkOhF0MmI2AxoYfakqtMLlznkTnrtY9QVuXZzsbvk+Gyavq2L39VjhcxGbt+LA==}
 
   '@iconify-json/lineicons@1.2.4':
     resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
@@ -2495,6 +2501,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/hugeicons@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/iconoir@1.2.7':
     dependencies:
       '@iconify/types': 2.0.0
 
