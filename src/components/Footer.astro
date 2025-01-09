@@ -1,31 +1,40 @@
+---
+const itemsMenu = [
+  {
+    name: "Sobre mí",
+    href: "#about",
+  },
+  {
+    name: "Proyectos",
+    href: "#projects",
+  },
+  {
+    name: "Experiencia",
+    href: "#experience",
+  },
+  {
+    name: "Contacto",
+    href: "#contact",
+  },
+];
+---
+
 <footer class="py-16 flex flex-col justify-center items-center">
   <nav class="justify-around items-center h-fit mb-8">
     <div class="text-black text-xl md:text-2xl">
       <ul class="flex md:gap-8 gap-3 flex-col md:flex-row text-center">
-        <li>
-          <a
-            href="#about"
-            class="hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-00"
-            >Sobre mí</a>
-        </li>
-        <li>
-          <a
-            href="#experience"
-            class="hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
-            >Experiencia</a>
-        </li>
-        <li>
-          <a
-            href="#projects"
-            class="hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
-            >Proyectos</a>
-        </li>
-        <li>
-          <a
-            href="#contact"
-            class="hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
-            >Contacto</a>
-        </li>
+        {
+          itemsMenu.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </nav>
