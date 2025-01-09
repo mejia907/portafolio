@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+const { image, title, description, position, dateIn, dateOut, url } = Astro.props;
+---
+
+<div
+  class="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[5rem] before:left-9 before:w-[1px] before:h-[calc(100%-70px)] dark:before:bg-zinc-300 before:bg-zinc-200"
+>
+  <a
+    target="_blank"
+    class="grid place-items-center border dark:border-zinc-300 border-zinc-200 min-h-[80px] min-w-[80px] p-2 rounded-md overflow-clip relative"
+    href={url}
+  >
+    <Image src={image} alt={title} class="object-cover transition duration-200 ease-in-out hover:scale-110" />
+  </a>
+  <div class="flex flex-col items-start">
+    <h3 class="text-xl font-semibold">{title}</h3>
+    <p>{position}</p>
+    <time class="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
+      {dateIn} - {dateOut}
+    </time>
+    <p class="tracking-tight dark:text-zinc-400 text-zinc-600 my-4">
+      {description}
+    </p>
+  </div>
+</div>

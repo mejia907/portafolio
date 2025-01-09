@@ -67,7 +67,7 @@ const itemsMenu = [
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-
+    
     const openMenu = document.getElementById("openMenu");
     const menu = document.getElementById("menu");
     const close = document.getElementById("closeMenu");
@@ -78,7 +78,6 @@ const itemsMenu = [
     }
 
     openMenu?.addEventListener("click", () => {
-    alert("hola");
       close?.classList.toggle("hidden");
       openMenu?.classList.toggle("hidden");
       closeMenu();
@@ -92,9 +91,11 @@ const itemsMenu = [
 
     optionsMenu.forEach((option) => {
       option.addEventListener("click", () => {
-        close?.classList.toggle("hidden");
-        openMenu?.classList.toggle("hidden");
-        closeMenu();
+        if (window.innerWidth <= 1250) {
+          close?.classList.toggle("hidden");
+          openMenu?.classList.toggle("hidden");
+          closeMenu();
+        }
       });
     });
   });

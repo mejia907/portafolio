@@ -7,6 +7,7 @@ import tasksoft from "../assets/images/tasksoft.webp";
 import api_games from "../assets/images/api_games.webp";
 import poke_api from "../assets/images/poke_api.webp";
 import cinemapedia from "../assets/images/cinemapedia.webp";
+import Badge from "./common/Badge.astro";
 ---
 
 <section id="projects" class="pt-[4vh] md:mx-40 mx-8 my-0 min-h-fit">
@@ -30,42 +31,10 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Landing page y administrador de contenido que permite la gestión de afiliados, integrantes del sindicato, noticias y celebraciones."
       url="https://sintraipsu.com/"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:react"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        React
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:tailwindcss"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Tailwind
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:nodejs"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Node JS
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:prisma"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Prisma
-      </span>
+      <Badge image="lineicons:react" title="React" />
+      <Badge image="lineicons:tailwindcss" title="Tailwind" />
+      <Badge image="lineicons:nodejs" title="Node JS" />
+      <Badge image="lineicons:prisma" title="Prisma" />
     </Card>
 
     <Card
@@ -74,24 +43,8 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Landing page para presentar los servicios de una cerrajero, permitiendo el redireccionamiento a sus redes sociales, Whatsapp y teléfono de contacto."
       url="https://cerrajeroluis24horas.com/"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:astro"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Astro
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:tailwindcss"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Tailwind
-      </span>
+      <Badge image="lineicons:astro" title="Astro" />
+      <Badge image="lineicons:tailwindcss" title="Tailwind" />
     </Card>
   </div>
 
@@ -112,24 +65,8 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Aplicativo implementado con Laravel Livewire el cual permite crear, editar, compartir y eliminar tareas."
       github="https://github.com/mejia907/tasksoft/"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:laravel"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Laravel
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="devicon-plain:livewire"
-          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
-        />
-        Livewire
-      </span>
+      <Badge image="lineicons:laravel" title="Laravel" />
+      <Badge image="devicon-plain:livewire" title="Livewire" mr="1" />
     </Card>
 
     <Card
@@ -138,33 +75,9 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Aplicativo desarrollado con Angular (14), que permite consumir una API de video juegos (Freetogame) con NestJS."
       github="https://github.com/mejia907/api-games"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:angular"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Angular
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="devicon-plain:nestjs"
-          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
-        />
-        NestJS
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:tailwindcss"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Tailwind
-      </span>
+      <Badge image="lineicons:angular" title="Angular" />
+      <Badge image="devicon-plain:nestjs" title="NestJS" mr="1" />
+      <Badge image="lineicons:tailwindcss" title="Tailwind" />
     </Card>
 
     <Card
@@ -173,24 +86,8 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Aplicación realizada con el framework Qwik, utilizando OpenAI e implmentando el diseño con Tailwind."
       github="https://github.com/mejia907/pokeapp-qwik"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="devicon-plain:qwik"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Qwik
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:tailwindcss"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Tailwind
-      </span>
+      <Badge image="devicon-plain:qwik" title="Qwik" />
+      <Badge image="lineicons:tailwindcss" title="Tailwind" />
     </Card>
     <Card
       image={cinemapedia}
@@ -198,24 +95,8 @@ import cinemapedia from "../assets/images/cinemapedia.webp";
       description="Aplicativo desarrollado en Flutter para conocer la cartelera de un cinema a través de una API, permite ver detalle de cada película y definir las favoritas."
       github="https://github.com/mejia907/cinemapedia"
     >
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="lineicons:flutter"
-          class="h-7 w-7 text-gray-600 inline-block align-middle"
-        />
-        Flutter
-      </span>
-      <span
-        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 border border-gray-500 transition duration-200 ease-in-out hover:scale-110"
-      >
-        <Icon
-          name="devicon-plain:dart"
-          class="h-7 w-7 text-gray-600 inline-block align-middle mr-1"
-        />
-        Dart
-      </span>
+      <Badge image="devicon-plain:flutter" title="Flutter" />
+      <Badge image="devicon-plain:dart" title="Dart" mr="1" />
     </Card>
   </div>
 </section>
