@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 const itemsMenu = [
   {
     name: "Sobre mí",
-    href: "#home",
+    href: "#about",
   },
   {
     name: "Experiencia",
@@ -12,7 +12,7 @@ const itemsMenu = [
   },
   {
     name: "Proyectos",
-    href: "#proyects",
+    href: "#projects",
   },
   {
     name: "Contacto",
@@ -22,7 +22,7 @@ const itemsMenu = [
 ---
 
 <header class="flex justify-around items-center h-[17vh]">
-  <div class="text-black text-2xl md:text-2xl">
+  <div class="text-black text-2xl">
     <a href="/"> Andrés F. Mejía</a>
   </div>
   <div class="relative inline-block">
@@ -53,7 +53,7 @@ const itemsMenu = [
           <li>
             <a
               href={item.href}
-              class="text-xl"
+              class="text-2xl hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
             >
               {item.name}
             </a>
@@ -67,6 +67,7 @@ const itemsMenu = [
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+
     const openMenu = document.getElementById("openMenu");
     const menu = document.getElementById("menu");
     const close = document.getElementById("closeMenu");
@@ -77,6 +78,7 @@ const itemsMenu = [
     }
 
     openMenu?.addEventListener("click", () => {
+    alert("hola");
       close?.classList.toggle("hidden");
       openMenu?.classList.toggle("hidden");
       closeMenu();
