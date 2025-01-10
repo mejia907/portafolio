@@ -1,12 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import profile from "../assets/perfil.webp";
 import { Icon } from "astro-icon/components";
+import profile from "../assets/perfil.webp";
+import curriculum from "../assets/docs/HOJA_DE_VIDA_ANDRES_FELIPE_MEJIA_RESTREPO.pdf";
 ---
 
 <section
   id="profile"
-  class="flex justify-center items-center h-[75vh] md:gap-44 lg:gap-36 2xl:gap-60 gap-16 xl:flex-row flex-col"
+  class="flex justify-center items-center h-[80vh] md:gap-44 lg:gap-36 2xl:gap-60 gap-16 xl:flex-row flex-col"
 >
   <Image
     src={profile}
@@ -36,6 +37,7 @@ import { Icon } from "astro-icon/components";
         <button
           type="button"
           class="text-black hover:text-white border border-gray-800 hover:bg-gray-900 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-900 dark:hover:text-white dark:hover:bg-gray-600"
+          onclick=`window.open('${curriculum}', '_blank')`
           >Descargar CV</button
         >
         <button
