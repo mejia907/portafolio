@@ -1,12 +1,14 @@
 ---
-import { Image } from "astro:assets";
-import profile from "../assets/sobre_mi.webp";
 import { Icon } from "astro-icon/components";
 
 const itemsSkills = [
   {
     name: "PHP",
     icon: "devicon:php",
+  },
+  {
+    name: "Laravel",
+    icon: "devicon:laravel",
   },
   {
     name: "JavaScript",
@@ -23,6 +25,10 @@ const itemsSkills = [
   {
     name: "Node JS",
     icon: "devicon:nodejs",
+  },
+  {
+    name: "Astro",
+    icon: "devicon:astro",
   },
   {
     name: "HTML",
@@ -46,6 +52,10 @@ const itemsSkillsDB = [
   {
     name: "MySQL",
     icon: "devicon:mysql",
+  },
+  {
+    name: "MariaDB",
+    icon: "devicon:mariadb",
   },
   {
     name: "MongoDB",
@@ -94,7 +104,7 @@ const itemsSkillsDB = [
           </p>
         </div>
       </div>
-      <div class="text-container text-justify">
+      <div class="md:text-lg text-base">
         <p>
           Como ingeniero en sistemas tengo los conocimientos, las habilidades y
           las características personales, para mi adecuado desempeño en las
@@ -128,7 +138,7 @@ const itemsSkillsDB = [
           ))
         }
       </div>
-      <div class="text-center mt-5 gap-2 flex items-center justify-center">
+      <div class="text-center md:mt-7 mt-5 gap-2 flex items-center justify-center">
         <Icon name="fluent-mdl2:database" class="h-8 w-8 2xl:h-10 2xl:w-10" />
         <p class="font-bold md:text-3xl 2xl:text-3xl lg:text-2xl text-xl py-5 2xl:py-5 text-center">
           Bases de Datos

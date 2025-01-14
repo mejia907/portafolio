@@ -14,18 +14,18 @@ import { Icon } from "astro-icon/components";
   <div
     class="flex justify-center border rounded-3xl border-gray-900 my-auto flex-col md:flex-row md:w-1/2 2xl:w-1/3 md:p-4 p-1 items-center mx-auto md:gap-8"
   >
-    <div class="flex items-center justify-center gap-2 md:m-2 m-1">
+    <div class="flex items-center justify-center gap-2 md:m-2 m-1 duration-200 ease-in-out hover:scale-105">
       <Icon
         name="proicons:mail"
-        class="md:h-10 md:w-10 h-6 w-6 cursor-pointer"
+        class="md:h-10 md:w-10 h-6 w-6 cursor-pointer transition"
         onclick={"location.href='mailto:mejia9070@gmail.com'"}
       />
       <p><a href="mailto:mejia9070@gmail.com">mejia9070@gmail.com</a></p>
     </div>
-    <div class="flex items-center justify-center gap-2 md:m-2 m-1">
+    <div class="flex items-center justify-center gap-2 md:m-2 m-1 transition duration-200 ease-in-out hover:scale-105">
       <Icon
         name="fa6-brands:linkedin"
-        class="md:h-10 md:w-10 h-6 w-6 cursor-pointer"
+        class="md:h-10 md:w-10 h-6 w-6 cursor-pointer transition"
         onclick={"window.open('https://www.linkedin.com/in/andresfelipemejiar', '_blank')"}
       />
       <p>

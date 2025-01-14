@@ -29,15 +29,24 @@ importers:
       '@iconify-json/hugeicons':
         specifier: ^1.2.3
         version: 1.2.3
+      '@iconify-json/icon-park':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@iconify-json/iconoir':
         specifier: ^1.2.7
         version: 1.2.7
       '@iconify-json/lineicons':
         specifier: ^1.2.4
         version: 1.2.4
+      '@iconify-json/ph':
+        specifier: ^1.2.2
+        version: 1.2.2
       '@iconify-json/proicons':
         specifier: ^1.2.11
         version: 1.2.11
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.20
+        version: 1.2.20
       '@iconify-json/uim':
         specifier: ^1.2.3
         version: 1.2.3
@@ -415,14 +424,23 @@ packages:
   '@iconify-json/hugeicons@1.2.3':
     resolution: {integrity: sha512-EujzAC9jlyJY+iFA2ehXoTgGfjKxMMD9xWGQbbo0MlqZelkg/dmENlqIMJjLy9B1sZltw1ol5eYhhzY69TwkQw==}
 
+  '@iconify-json/icon-park@1.2.2':
+    resolution: {integrity: sha512-MdC180Mfz0h9RLTCcT49uKdllynCcG2V0nmggAkTn9pEJig9bOvQzC+05otNSlMjloAPzryj/RCf2P/nHiEeHg==}
+
   '@iconify-json/iconoir@1.2.7':
     resolution: {integrity: sha512-UDlx2WeWHqopfKRsjOta6fn/KkOhF0MmI2AxoYfakqtMLlznkTnrtY9QVuXZzsbvk+Gyavq2L39VjhcxGbt+LA==}
 
   '@iconify-json/lineicons@1.2.4':
     resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
 
+  '@iconify-json/ph@1.2.2':
+    resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
+
   '@iconify-json/proicons@1.2.11':
     resolution: {integrity: sha512-e9yGjoTDMr1NVPe4Szerhzq/uhi23GbxmEk4P9OB9cSN6mdvB9dIVXXLRu9YAa1Y7WAUCKn3dp/3FkxvNAtzvg==}
+
+  '@iconify-json/simple-icons@1.2.20':
+    resolution: {integrity: sha512-WlQ95zrdxxizrFt2HtkfYjyWatLfE8Z7BKOkew9quG5S5AKYVxF1PkTtOs8LDWShce1DpvxKWQne4W5DQyEGZg==}
 
   '@iconify-json/uim@1.2.3':
     resolution: {integrity: sha512-rCOU5nrRbcg5s5ZhL9Esoj/acyPeb6hPetVQYMJ18/wJwYsQtcwrFJXy6XOwyFs9TTLnjFGynLJO/TYihOQtDg==}
@@ -2507,6 +2525,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/icon-park@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/iconoir@1.2.7':
     dependencies:
       '@iconify/types': 2.0.0
@@ -2515,7 +2537,15 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/ph@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/proicons@1.2.11':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.20':
     dependencies:
       '@iconify/types': 2.0.0
 
