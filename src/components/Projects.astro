@@ -8,6 +8,7 @@ import tasksoft from "../assets/images/tasksoft.webp";
 import api_games from "../assets/images/api_games.webp";
 import poke_api from "../assets/images/poke_api.webp";
 import cinemapedia from "../assets/images/cinemapedia.webp";
+import linktree_clone from "../assets/images/linktree_clone.webp";
 import Badge from "./common/Badge.astro";
 ---
 
@@ -72,6 +73,19 @@ import Badge from "./common/Badge.astro";
   <div
     class="max-w-xs mx-auto grid gap-6 lg:grid-cols-2 2xl:grid-cols-3 items-start lg:max-w-none"
   >
+    <Card
+      image={linktree_clone}
+      title="Linktree-Clone"
+      description="Clone de linktree que permite el inicio de sesion con Clerk y tiene la funcionalidad de crear, editar, compartir y eliminar enlaces, ademas la opción de editar perfiles."
+      url="https://linktree-clone-eosin.vercel.app/"
+      github="https://github.com/mejia907/tasksoft/"
+    >
+      <Badge image="lineicons:nextjs" title="NextJS" mr="1" />
+      <Badge image="cbi:neon" title="Console" mr="1" />
+      <Badge image="simple-icons:clerk" title="Clerk" mr="1" />
+      <Badge image="lineicons:tailwindcss" title="Tailwind" />
+    </Card>
+
     <Card
       image={tasksoft}
       title="Task-Soft"
