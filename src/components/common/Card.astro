@@ -34,7 +34,7 @@ const { image, title, description, url, github } = Astro.props;
       {
         github && (
           <button
-            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm px-4 py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
+            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm sm:px-4 px-[9px] py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
             onclick={`window.open('${github}', '_blank')`}
           >
             <Icon
@@ -48,7 +48,7 @@ const { image, title, description, url, github } = Astro.props;
       {
         url && (
           <button
-            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm px-4 py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
+            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm sm:px-4 px-[9px] py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
             onclick={`window.open('${url}', '_blank')`}
           >
             <Icon

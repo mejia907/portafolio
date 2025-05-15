@@ -20,7 +20,7 @@ const { image, title, description, position, dateIn, dateOut, url } = Astro.prop
       {dateIn} - {dateOut}
     </time>
     <p class="tracking-tight text-gray-600 my-4 md:text-base text-sm">
-      {description}
+       <span set:html={description}></span>
     </p>
   </div>
 </div>
