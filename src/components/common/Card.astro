@@ -4,68 +4,69 @@ import { Icon } from "astro-icon/components";
 
 const { image, title, description, url, github } = Astro.props;
 ---
-
-<div
-  class="flex flex-col h-full bg-white border border-slate-200 shadow shadow-slate-950/5 rounded-2xl overflow-hidden"
+<article
+  class="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10
+  dark:border-slate-700 dark:bg-slate-900 dark:shadow-none"
 >
-  <div class="h-80 overflow-hidden">
-    <Image 
-      src={image} 
-      alt={title} 
-      class="object-cover w-full h-full transition duration-200 ease-in-out hover:scale-105" 
+  {/* Imagen */}
+  <div class="h-56 overflow-hidden border-b border-slate-100 sm:h-64 dark:border-slate-700">
+    <Image
+      src={image}
+      alt={title}
+      class="h-full w-full object-cover transition duration-500 ease-in-out group-hover:scale-105"
     />
   </div>
-  
-  <div class="flex flex-col p-6 flex-grow">
+
+  {/* Contenido */}
+  <div class="flex flex-1 flex-col p-5 sm:p-6">
     <div class="flex-1">
-      <header class="mb-2">
-        <h2 class="text-xl font-extrabold leading-snug">
-          <a
-            class="text-slate-900 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300"
-            href="#0"
-          >
-            {title}
-          </a>
-        </h2>
-      </header>
-      <div class="text-sm text-slate-600 mb-3">
-        <p>
-          {description}
-        </p>
-      </div>
+      <h2 class="text-xl font-bold leading-snug text-slate-900 dark:text-slate-100">
+        {title}
+      </h2>
+      <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        {description}
+      </p>
     </div>
-    <div class="flex flex-wrap gap-2 pb-5">
+
+    {/* Tags */}
+    <div class="mb-6 mt-5 flex flex-wrap gap-2">
       <slot />
     </div>
-    <div class="flex justify-end mt-auto"> <!-- mt-auto para empujar los botones hacia abajo -->
+
+    {/* Actions */}
+    <div class="mt-auto flex flex-wrap justify-end gap-2">
       {
         github && (
-          <button
-            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm sm:px-4 px-[9px] py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
-            onclick={`window.open('${github}', '_blank')`}
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm font-medium text-white transition
+            hover:bg-slate-700
+            dark:border-slate-600 dark:bg-slate-800 dark:hover:bg-slate-700"
           >
-            <Icon
-              name="fa6-brands:github"
-              class="h-6 w-6 cursor-pointer inline-block align-middle mr-1"
-            />
+            <Icon name="fa6-brands:github" class="h-5 w-5" />
             Ver código
-          </button>
+          </a>
         )
       }
+
       {
         url && (
-          <button
-            class="text-white bg-gray-900 hover:text-white border border-gray-800 hover:bg-gray-800 font-medium rounded-full text-sm sm:px-4 px-[9px] py-2 text-center me-2 mb-2 dark:border-gray-600 transition duration-200 ease-in-out hover:scale-105"
-            onclick={`window.open('${url}', '_blank')`}
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition
+            hover:border-slate-300 hover:text-slate-900
+            dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300
+            dark:hover:border-slate-500 dark:hover:text-white"
           >
-            <Icon
-              name="uim:arrow-up-right"
-              class="h-6 w-6 cursor-pointer inline-block align-middle"
-            />
+            <Icon name="uim:arrow-up-right" class="h-5 w-5" />
             Ver ahora
-          </button>
+          </a>
         )
       }
     </div>
   </div>
-</div>
+</article>

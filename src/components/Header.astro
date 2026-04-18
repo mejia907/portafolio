@@ -2,62 +2,117 @@
 import { Icon } from "astro-icon/components";
 
 const itemsMenu = [
-  {
-    name: "Sobre mí",
-    href: "#about",
-  },
-  {
-    name: "Proyectos",
-    href: "#projects",
-  },
-  {
-    name: "Experiencia",
-    href: "#experience",
-  },
-  {
-    name: "Certificados",
-    href: "#certificates",
-  },
-  {
-    name: "Contacto",
-    href: "#contact",
-  },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Experiencia", href: "#experience" },
+  { name: "Certificados", href: "#certificates" },
+  { name: "Contacto", href: "#contact" },
 ];
 ---
 
-<header class="flex justify-around items-center md:h-[17vh] h-[10vh]">
-  <div class="text-black text-2xl">
-    <a href="/"> Andrés F. Mejía</a>
-  </div>
-  <div class="relative inline-block">
-    <button
-      id="openMenu"
-      aria-label="Open Menu"
-      class="2xl:hidden xl:hidden text-black flex text-xl flex-col justify-between"
-    >
-      <Icon name="proicons:menu" class="size-8" />
-    </button>
-    <button
-      id="closeMenu"
-      aria-label="Close Menu"
-      class="hidden text-black text-xl flex-col justify-between"
-    >
-      <Icon name="proicons:cancel" class="size-8" />
-    </button>
-
+<header
+  class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur transition
+  dark:border-slate-800/80 dark:bg-slate-950/85"
+>
   <div
-    class="hidden xl:flex 2xl:flex"
-    id="menu"
+    class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8"
   >
-    <ul
-      class="absolute top-full right-0 bg-white flex xl:flex-row xl:shadow-none xl:relative xl:top-0 flex-col gap-5 p-4 shadow-md "
+    {/* LOGO */}
+    <a
+      href="/"
+      class="text-lg font-semibold tracking-tight text-slate-900 sm:text-2xl dark:text-slate-100"
     >
+      Andrés F. Mejía
+    </a>
+
+    {/* RIGHT SIDE */}
+    <div class="flex items-center gap-2 xl:gap-6">
+      {/* NAV (desktop) */}
+      <nav
+        class="hidden xl:block"
+        aria-label="Navegación principal"
+      >
+        <ul class="flex items-center gap-6">
+          {
+            itemsMenu.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm font-medium text-slate-600 transition
+                  hover:text-slate-900 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-slate-400
+                  dark:text-slate-300 dark:hover:text-white dark:hover:decoration-slate-500"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      {/* THEME TOGGLE */}
+      <button
+        id="themeToggle"
+        aria-label="Cambiar tema"
+        aria-pressed="false"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition
+        hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400
+        dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+        type="button"
+      >
+        <Icon
+          id="moonIcon"
+          name="ph:moon-stars"
+          class="h-5 w-5"
+        />
+        <Icon
+          id="sunIcon"
+          name="ph:sun-dim"
+          class="hidden h-5 w-5"
+        />
+      </button>
+
+      {/* MENU BUTTON (mobile) */}
+      <button
+        id="toggleMenu"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu"
+        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition
+        hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400
+        xl:hidden
+        dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+        type="button"
+      >
+        <Icon
+          id="menuIcon"
+          name="proicons:menu"
+          class="h-6 w-6"
+        />
+        <Icon
+          id="closeIcon"
+          name="proicons:cancel"
+          class="hidden h-6 w-6"
+        />
+      </button>
+    </div>
+  </div>
+
+  {/* MOBILE MENU */}
+  <nav
+    id="menu"
+    class="hidden xl:hidden absolute left-4 right-4 top-[calc(100%+0.75rem)] rounded-2xl border border-slate-200 bg-white p-4 shadow-xl shadow-slate-900/10
+    dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-950/40"
+  >
+    <ul class="flex flex-col gap-4">
       {
         itemsMenu.map((item) => (
           <li>
             <a
               href={item.href}
-              class="text-2xl hover:text-gray-600 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-gray-400"
+              class="block text-sm font-medium text-slate-600 transition
+              hover:text-slate-900
+              dark:text-slate-300 dark:hover:text-white"
             >
               {item.name}
             </a>
@@ -65,42 +120,126 @@ const itemsMenu = [
         ))
       }
     </ul>
-  </div>
-</div>
+  </nav>
 </header>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    
-    const openMenu = document.getElementById("openMenu");
-    const menu = document.getElementById("menu");
-    const close = document.getElementById("closeMenu");
-    const optionsMenu = document.querySelectorAll("#menu li a");
+    const THEME_KEY = "theme-preference";
 
-    function closeMenu() {
-      menu?.classList.toggle("hidden");
+    const themeToggle = document.getElementById("themeToggle");
+    const moonIcon = document.getElementById("moonIcon");
+    const sunIcon = document.getElementById("sunIcon");
+
+    const toggleMenu = document.getElementById("toggleMenu");
+    const menu = document.getElementById("menu");
+    const menuIcon = document.getElementById("menuIcon");
+    const closeIcon = document.getElementById("closeIcon");
+
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const getStoredTheme = () => {
+      try {
+        return localStorage.getItem(THEME_KEY);
+      } catch {
+        return null;
+      }
+    };
+
+    const saveTheme = (theme: string) => {
+      try {
+        localStorage.setItem(THEME_KEY, theme);
+      } catch {}
+    };
+
+    const syncThemeIcon = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+
+      moonIcon?.classList.toggle("hidden", isDark);
+      sunIcon?.classList.toggle("hidden", !isDark);
+
+      themeToggle?.setAttribute("aria-pressed", String(isDark));
+      themeToggle?.setAttribute(
+        "aria-label",
+        isDark ? "Activar modo claro" : "Activar modo oscuro",
+      );
+    };
+
+    const applyTheme = (theme: string, persist = false) => {
+      const isDark = theme === "dark";
+      document.documentElement.classList.toggle("dark", isDark);
+      if (persist) saveTheme(theme);
+      syncThemeIcon();
+    };
+
+    // INIT THEME
+    const storedTheme = getStoredTheme();
+    if (storedTheme === "dark" || storedTheme === "light") {
+      applyTheme(storedTheme);
+    } else {
+      applyTheme(systemTheme.matches ? "dark" : "light");
     }
 
-    openMenu?.addEventListener("click", () => {
-      close?.classList.toggle("hidden");
-      openMenu?.classList.toggle("hidden");
-      closeMenu();
+    themeToggle?.addEventListener("click", () => {
+      const nextTheme = document.documentElement.classList.contains("dark")
+        ? "light"
+        : "dark";
+      applyTheme(nextTheme, true);
     });
 
-    close?.addEventListener("click", () => {
-      openMenu?.classList.toggle("hidden");
-      close?.classList.toggle("hidden");
-      closeMenu();
+    systemTheme.addEventListener("change", (event) => {
+      if (getStoredTheme()) return;
+      applyTheme(event.matches ? "dark" : "light");
     });
 
-    optionsMenu.forEach((option) => {
-      option.addEventListener("click", () => {
-        if (window.innerWidth <= 1250) {
-          close?.classList.toggle("hidden");
-          openMenu?.classList.toggle("hidden");
-          closeMenu();
-        }
-      });
+    // MENU
+    const isDesktop = () => window.innerWidth >= 1280;
+
+    const setMenuState = (isOpen: boolean) => {
+      if (isDesktop()) {
+        menu?.classList.remove("hidden");
+        toggleMenu?.setAttribute("aria-expanded", "false");
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+        return;
+      }
+
+      menu?.classList.toggle("hidden", !isOpen);
+      toggleMenu?.setAttribute("aria-expanded", String(isOpen));
+      menuIcon?.classList.toggle("hidden", isOpen);
+      closeIcon?.classList.toggle("hidden", !isOpen);
+    };
+
+    setMenuState(false);
+
+    toggleMenu?.addEventListener("click", () => {
+      const shouldOpen = menu?.classList.contains("hidden");
+      setMenuState(Boolean(shouldOpen));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (isDesktop()) return;
+
+      if (!(event.target instanceof Element)) return;
+
+      const clickedOutside =
+        !menu?.contains(event.target) && !toggleMenu?.contains(event.target);
+
+      if (clickedOutside) setMenuState(false);
+    });
+
+    menu?.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+
+      if (target.closest("a")) {
+        setMenuState(false);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      setMenuState(false);
     });
   });
 </script>

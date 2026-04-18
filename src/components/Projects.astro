@@ -12,118 +12,109 @@ import linktree_clone from "../assets/images/linktree_clone.webp";
 import Badge from "./common/Badge.astro";
 ---
 
-<section id="projects" class="pt-[4vh] md:mx-40 mx-8 my-0 min-h-fit">
-  <div class="text-center m-2 gap-2 flex items-center justify-center">
-    <Icon
-      name="hugeicons:source-code-square"
-      class="h-8 w-8 2xl:h-10 2xl:w-10"
-    />
-    <h1
-      class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10"
-    >
-      Proyectos
-    </h1>
-  </div>
-  <div
-    class="mx-auto grid gap-6 lg:grid-cols-2 2xl:grid-cols-3 items-start lg:max-w-none"
-  >
-    <Card
-      image={enrutarcol}
-      title="Enrutarcol"
-      description="Aplicación web que permite administrar solicitudes de enrutamiento a clientes, así como gestionar clientes y usuarios de manera eficiente. La aplicación ofrece una interfaz intuitiva."
-      url="https://transenrutarcol.com/"
-    >
-      <Badge image="lineicons:react" title="React" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      <Badge image="lineicons:nodejs" title="Node JS" />
-      <Badge image="lineicons:prisma" title="Prisma" />
-    </Card>
+<section id="projects" class="py-16 md:py-20">
+  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center gap-2 text-center">
+      <Icon name="hugeicons:source-code-square" class="h-8 w-8 text-slate-700 sm:h-10 sm:w-10 dark:text-slate-300" />
+      <h1 class="py-2 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl dark:text-slate-100">
+        Proyectos
+      </h1>
+    </div>
+    <div class="mt-8 grid items-start gap-6 md:grid-cols-2 2xl:grid-cols-3">
+      <Card
+        image={enrutarcol}
+        title="Enrutarcol"
+        description="Aplicación web que permite administrar solicitudes de enrutamiento a clientes, así como gestionar clientes y usuarios de manera eficiente. La aplicación ofrece una interfaz intuitiva."
+        url="https://transenrutarcol.com/"
+      >
+        <Badge image="lineicons:react" title="React" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+        <Badge image="lineicons:nodejs" title="Node JS" />
+        <Badge image="lineicons:prisma" title="Prisma" />
+      </Card>
 
-    <Card
-      image={sintraipsu}
-      title="Sintraipsu"
-      description="Landing page y administrador de contenido que permite la gestión de afiliados, integrantes del sindicato, noticias y celebraciones."
-      url="https://sintraipsu.com/"
-    >
-      <Badge image="lineicons:react" title="React" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      <Badge image="lineicons:nodejs" title="Node JS" />
-      <Badge image="lineicons:prisma" title="Prisma" />
-    </Card>
+      <Card
+        image={sintraipsu}
+        title="Sintraipsu"
+        description="Landing page y administrador de contenido que permite la gestión de afiliados, integrantes del sindicato, noticias y celebraciones."
+        url="https://sintraipsu.com/"
+      >
+        <Badge image="lineicons:react" title="React" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+        <Badge image="lineicons:nodejs" title="Node JS" />
+        <Badge image="lineicons:prisma" title="Prisma" />
+      </Card>
 
-    <Card
-      image={cerrajero}
-      title="Cerrajero Luis 24 Horas"
-      description="Landing page para presentar los servicios de una cerrajero, permitiendo el redireccionamiento a sus redes sociales, Whatsapp y teléfono de contacto."
-      github="https://github.com/mejia907/cerrajeroalvarez"
-    >
-      <Badge image="lineicons:astro" title="Astro" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-    </Card>
-  </div>
+      <Card
+        image={cerrajero}
+        title="Cerrajero Luis 24 Horas"
+        description="Landing page para presentar los servicios de una cerrajero, permitiendo el redireccionamiento a sus redes sociales, Whatsapp y teléfono de contacto."
+        github="https://github.com/mejia907/cerrajeroalvarez"
+      >
+        <Badge image="lineicons:astro" title="Astro" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+      </Card>
+    </div>
 
-  <div class="pt-[4vh] text-center m-2 gap-2 flex items-center justify-center">
-    <Icon name="hugeicons:source-code" class="h-8 w-8 2xl:h-10 2xl:w-10" />
-    <h1
-      class="font-bold md:text-5xl 2xl:text-5xl lg:text-4xl text-3xl py-5 2xl:py-10"
-    >
-      Otros Proyectos
-    </h1>
-  </div>
-  <div
-    class="mx-auto grid gap-6 lg:grid-cols-2 2xl:grid-cols-3 items-start lg:max-w-none"
-  >
-    <Card
-      image={linktree_clone}
-      title="Linktree-Clone"
-      description="Clone de linktree que permite el inicio de sesion con Clerk y tiene la funcionalidad de crear, editar, compartir y eliminar enlaces, ademas la opción de editar perfiles."
-      url="https://linktree-clone-eosin.vercel.app/"
-      github="https://github.com/mejia907/linktree-clone/"
-    >
-      <Badge image="lineicons:nextjs" title="NextJS" mr="1" />
-      <Badge image="cbi:neon" title="Console" mr="1" />
-      <Badge image="simple-icons:clerk" title="Clerk" mr="1" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-    </Card>
+    <div class="mt-16 flex items-center justify-center gap-2 text-center">
+      <Icon name="hugeicons:source-code" class="h-8 w-8 text-slate-700 sm:h-10 sm:w-10 dark:text-slate-300" />
+      <h2 class="py-2 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl dark:text-slate-100">
+        Otros Proyectos
+      </h2>
+    </div>
+    <div class="mt-8 grid items-start gap-6 md:grid-cols-2 2xl:grid-cols-3">
+      <Card
+        image={linktree_clone}
+        title="Linktree-Clone"
+        description="Clone de linktree que permite el inicio de sesion con Clerk y tiene la funcionalidad de crear, editar, compartir y eliminar enlaces, ademas la opción de editar perfiles."
+        url="https://linktree-clone-eosin.vercel.app/"
+        github="https://github.com/mejia907/linktree-clone/"
+      >
+        <Badge image="lineicons:nextjs" title="NextJS" />
+        <Badge image="cbi:neon" title="Console" />
+        <Badge image="simple-icons:clerk" title="Clerk" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+      </Card>
 
-    <Card
-      image={tasksoft}
-      title="Task-Soft"
-      description="Aplicativo implementado con Laravel Livewire el cual permite crear, editar, compartir y eliminar tareas."
-      github="https://github.com/mejia907/tasksoft/"
-    >
-      <Badge image="lineicons:laravel" title="Laravel" />
-      <Badge image="devicon-plain:livewire" title="Livewire" mr="1" />
-    </Card>
+      <Card
+        image={tasksoft}
+        title="Task-Soft"
+        description="Aplicativo implementado con Laravel Livewire el cual permite crear, editar, compartir y eliminar tareas."
+        github="https://github.com/mejia907/tasksoft/"
+      >
+        <Badge image="lineicons:laravel" title="Laravel" />
+        <Badge image="devicon-plain:livewire" title="Livewire" />
+      </Card>
 
-    <Card
-      image={api_games}
-      title="API Games"
-      description="Aplicativo desarrollado con Angular (14), que permite consumir una API de video juegos (Freetogame) con NestJS."
-      github="https://github.com/mejia907/api-games"
-    >
-      <Badge image="lineicons:angular" title="Angular" />
-      <Badge image="devicon-plain:nestjs" title="NestJS" mr="1" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-    </Card>
+      <Card
+        image={api_games}
+        title="API Games"
+        description="Aplicativo desarrollado con Angular (14), que permite consumir una API de video juegos (Freetogame) con NestJS."
+        github="https://github.com/mejia907/api-games"
+      >
+        <Badge image="lineicons:angular" title="Angular" />
+        <Badge image="devicon-plain:nestjs" title="NestJS" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+      </Card>
 
-    <Card
-      image={poke_api}
-      title="Poke API"
-      description="Aplicación realizada con el framework Qwik, utilizando OpenAI e implmentando el diseño con Tailwind."
-      github="https://github.com/mejia907/pokeapp-qwik"
-    >
-      <Badge image="devicon-plain:qwik" title="Qwik" />
-      <Badge image="lineicons:tailwindcss" title="Tailwind" />
-    </Card>
-    <Card
-      image={cinemapedia}
-      title="Cinemapedia"
-      description="Aplicativo desarrollado en Flutter para conocer la cartelera de un cinema a través de una API, permite ver detalle de cada película y definir las favoritas."
-      github="https://github.com/mejia907/cinemapedia"
-    >
-      <Badge image="devicon-plain:flutter" title="Flutter" />
-      <Badge image="devicon-plain:dart" title="Dart" mr="1" />
-    </Card>
+      <Card
+        image={poke_api}
+        title="Poke API"
+        description="Aplicación realizada con el framework Qwik, utilizando OpenAI e implmentando el diseño con Tailwind."
+        github="https://github.com/mejia907/pokeapp-qwik"
+      >
+        <Badge image="devicon-plain:qwik" title="Qwik" />
+        <Badge image="lineicons:tailwindcss" title="Tailwind" />
+      </Card>
+      <Card
+        image={cinemapedia}
+        title="Cinemapedia"
+        description="Aplicativo desarrollado en Flutter para conocer la cartelera de un cinema a través de una API, permite ver detalle de cada película y definir las favoritas."
+        github="https://github.com/mejia907/cinemapedia"
+      >
+        <Badge image="devicon-plain:flutter" title="Flutter" />
+        <Badge image="devicon-plain:dart" title="Dart" />
+      </Card>
+    </div>
   </div>
 </section>
