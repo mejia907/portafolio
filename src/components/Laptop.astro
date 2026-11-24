@@ -1,0 +1,290 @@
+---
+// Portátil decorativo: el código en pantalla resume datos reales del portafolio
+const code = [
+  [["k", "const "], ["v", "desarrollador"], ["p", " = {"]],
+  [["p", "  "], ["a", "nombre"], ["p", ": "], ["s", "'Andrés F. Mejía'"], ["p", ","]],
+  [["p", "  "], ["a", "rol"], ["p", ": "], ["s", "'FullStack'"], ["p", ","]],
+  [["p", "  "], ["a", "ciudad"], ["p", ": "], ["s", "'Manizales'"], ["p", ","]],
+  [["p", "  "], ["a", "backend"], ["p", ": ["]],
+  [["p", "    "], ["s", "'PHP'"], ["p", ", "], ["s", "'Laravel'"], ["p", ","]],
+  [["p", "    "], ["s", "'Node.js'"], ["p", ", "], ["s", "'NestJS'"], ["p", ","]],
+  [["p", "  ],"]],
+  [["p", "  "], ["a", "frontend"], ["p", ": ["]],
+  [["p", "    "], ["s", "'React'"], ["p", ", "], ["s", "'Next.js'"], ["p", ","]],
+  [["p", "    "], ["s", "'Astro'"], ["p", ", "], ["s", "'Tailwind'"], ["p", ","]],
+  [["p", "  ],"]],
+  [["p", "  "], ["a", "datos"], ["p", ": ["], ["s", "'MySQL'"], ["p", ", "], ["s", "'PostgreSQL'"], ["p", "],"]],
+  [["p", "}"]],
+  [],
+  [["k", "export default "], ["v", "desarrollador"]],
+];
+---
+
+<div class="scene" aria-hidden="true">
+  <div class="laptop">
+    <div class="lid">
+      <div class="screen">
+        <div class="bar"><i></i><i></i><i></i><span>portafolio.ts</span></div>
+        <pre class="code">{code.map((line) => <span class="line">{line.map(([type, text]) => <span class={type}>{text}</span>)}</span>)}</pre>
+        <canvas id="wireframe" class="wire" width="320" height="320"></canvas>
+      </div>
+    </div>
+    <div class="base">
+      <div class="keys"></div>
+      <div class="pad"></div>
+    </div>
+    <div class="edge"></div>
+  </div>
+  <div class="light"></div>
+</div>
+
+<style>
+  .scene {
+    container-type: inline-size;
+    position: relative;
+    aspect-ratio: 100 / 72;
+    perspective: 190cqw;
+    perspective-origin: 40% 20%;
+  }
+
+  .laptop {
+    position: absolute;
+    left: 14cqw;
+    top: 4cqw;
+    width: 78cqw;
+    height: 49cqw;
+    transform-style: preserve-3d;
+    transform: rotateX(-9deg) rotateY(-21deg) rotateZ(0.6deg);
+  }
+
+  .lid {
+    position: absolute;
+    inset: 0;
+    padding: 1.5cqw 1.5cqw 2.4cqw;
+    border-radius: 2cqw 2cqw 0 0;
+    background: linear-gradient(150deg, #4a626a, #16242a 30%, #0a1114);
+    box-shadow:
+      inset 0 0 0 0.22cqw rgb(150 230 245 / 0.5),
+      0 0 11cqw 0 color-mix(in oklab, var(--glow) 44%, transparent);
+    transform-origin: bottom;
+    transform: rotateX(7deg);
+  }
+
+  .screen {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0.8cqw;
+    background:
+      radial-gradient(circle at 76% 52%, color-mix(in oklab, var(--glow) 34%, transparent), transparent 50%),
+      linear-gradient(160deg, #04151b, #020a0e);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 0.9cqw;
+    height: 4cqw;
+    padding-inline: 1.6cqw;
+    border-bottom: 1px solid rgb(120 220 240 / 0.14);
+    color: #7fa3ab;
+    font-size: 1.6cqw;
+  }
+
+  .bar i {
+    width: 1.1cqw;
+    height: 1.1cqw;
+    border-radius: 50%;
+    background: #23474f;
+  }
+
+  .bar span {
+    margin-left: 1cqw;
+  }
+
+  .code {
+    margin: 0;
+    padding: 1.3cqw 2cqw;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 1.72cqw;
+    line-height: 1.42;
+    color: #8fb1b9;
+  }
+
+  .line {
+    display: block;
+    min-height: 1.42em;
+  }
+
+  .k {
+    color: #c49bff;
+  }
+
+  .v {
+    color: var(--glow-strong);
+  }
+
+  .a {
+    color: #7fd1ff;
+  }
+
+  .s {
+    color: #9be8b1;
+  }
+
+  .wire {
+    position: absolute;
+    right: 2cqw;
+    top: 50%;
+    width: 27cqw;
+    height: 27cqw;
+    translate: 0 -46%;
+  }
+
+  .base {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 46cqw;
+    padding: 3cqw 6cqw;
+    border-radius: 0 0 2.2cqw 2.2cqw;
+    background: linear-gradient(170deg, #2b3b42, #141f24 45%, #235561);
+    box-shadow:
+      inset 0 0 0 0.2cqw rgb(150 220 235 / 0.22),
+      inset 0 -0.5cqw 1cqw color-mix(in oklab, var(--glow) 30%, transparent);
+    transform-origin: top;
+    transform: rotateX(82deg);
+  }
+
+  .keys {
+    height: 52%;
+    border-radius: 0.8cqw;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 4.1cqw, #0e181c 4.1cqw 4.7cqw),
+      repeating-linear-gradient(0deg, #05090b 0 3.4cqw, #0e181c 3.4cqw 4cqw);
+    box-shadow: 0 0 2cqw color-mix(in oklab, var(--glow) 14%, transparent);
+  }
+
+  .pad {
+    width: 34%;
+    height: 34%;
+    margin: 2.2cqw auto 0;
+    border-radius: 0.8cqw;
+    background: #121d21;
+    box-shadow: inset 0 0 0 0.15cqw rgb(150 220 235 / 0.16);
+  }
+
+  /* Canto frontal de la base */
+  .edge {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 1.7cqw;
+    border-radius: 0 0 1.6cqw 1.6cqw;
+    background: linear-gradient(90deg, #1b3b44, #6fd3e6 46%, #1a3138);
+    transform-origin: top;
+    transform: translateY(6.4cqw) translateZ(45.5cqw);
+  }
+
+  .light {
+    position: absolute;
+    left: 2%;
+    right: 0;
+    bottom: -4%;
+    z-index: -1;
+    height: 44%;
+    background: radial-gradient(
+      ellipse 50% 46% at 50% 55%,
+      color-mix(in oklab, var(--glow) 72%, transparent),
+      transparent 72%
+    );
+  }
+</style>
+
+<script>
+  // Icosaedro de alambre que gira en la pantalla del portátil
+  const canvas = document.querySelector<HTMLCanvasElement>("#wireframe");
+  const context = canvas?.getContext("2d");
+
+  if (canvas && context) {
+    const phi = (1 + Math.sqrt(5)) / 2;
+    const length = Math.hypot(1, phi);
+    const points = [-1, 1]
+      .flatMap((a) => [-phi, phi].flatMap((b) => [[0, a, b], [a, b, 0], [b, 0, a]]))
+      .map((point) => point.map((value) => value / length));
+    const edges = points.flatMap((p, i) =>
+      points.flatMap((q, j) =>
+        j > i && Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]) < 1.1 ? [[i, j]] : [],
+      ),
+    );
+    const size = canvas.width;
+    const color = getComputedStyle(canvas).getPropertyValue("--glow").trim() || "cyan";
+
+    const draw = (time: number) => {
+      const turn = time / 5200;
+      const projected = points.map(([x, y, z]) => {
+        const x1 = x * Math.cos(turn) + z * Math.sin(turn);
+        const z1 = z * Math.cos(turn) - x * Math.sin(turn);
+        const y1 = y * Math.cos(0.42) - z1 * Math.sin(0.42);
+        const z2 = z1 * Math.cos(0.42) + y * Math.sin(0.42);
+        const scale = (size * 0.36) / (1 - z2 * 0.22);
+        return { x: size / 2 + x1 * scale, y: size / 2 + y1 * scale, z: z2 };
+      });
+
+      context.clearRect(0, 0, size, size);
+      context.strokeStyle = color;
+      context.fillStyle = color;
+      context.lineWidth = 2;
+
+      for (const { x, y, z } of projected) {
+        context.globalAlpha = 0.12 + (z + 1) * 0.1;
+        context.beginPath();
+        context.moveTo(size / 2, size / 2);
+        context.lineTo(x, y);
+        context.stroke();
+      }
+
+      for (const [i, j] of edges) {
+        const a = projected[i];
+        const b = projected[j];
+        context.globalAlpha = 0.28 + (a.z + b.z + 2) * 0.17;
+        context.beginPath();
+        context.moveTo(a.x, a.y);
+        context.lineTo(b.x, b.y);
+        context.stroke();
+      }
+
+      for (const { x, y, z } of projected) {
+        context.globalAlpha = 0.4 + (z + 1) * 0.3;
+        context.beginPath();
+        context.arc(x, y, 4 + z * 1.5, 0, Math.PI * 2);
+        context.fill();
+      }
+    };
+
+    draw(0);
+
+    // Solo gira mientras se ve, y nunca con movimiento reducido
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let visible = false;
+
+    const loop = (time: number) => {
+      draw(time);
+      frame = requestAnimationFrame(loop);
+    };
+
+    const update = () => {
+      cancelAnimationFrame(frame);
+      if (visible && !reduced.matches) frame = requestAnimationFrame(loop);
+    };
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }).observe(canvas);
+    reduced.addEventListener("change", update);
+  }
+</script>

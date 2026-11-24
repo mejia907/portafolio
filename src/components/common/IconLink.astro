@@ -8,14 +8,15 @@ interface Props {
 }
 
 const { href, icon, label } = Astro.props;
+const isExternal = href.startsWith("http");
 ---
 
 <a
   href={href}
-  target="_blank"
-  rel="noopener noreferrer"
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
   aria-label={label}
-  class="inline-flex size-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-200 hover:border-ink hover:bg-surface-raised active:opacity-80"
+  class="panel inline-flex size-12 items-center justify-center rounded-xl text-ink transition-colors duration-200 hover:border-glow hover:text-glow active:opacity-80"
 >
   <Icon name={icon} class="size-5" aria-hidden="true" />
 </a>

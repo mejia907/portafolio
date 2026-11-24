@@ -1,31 +1,41 @@
 ---
 import { Icon } from "astro-icon/components";
 import Button from "./common/Button.astro";
-import SectionHeading from "./common/SectionHeading.astro";
 ---
 
-<section id="contact" class="border-t border-line py-16 md:py-24">
+<section id="contact" class="pt-20 lg:pt-28">
   <div class="wrap">
-    <SectionHeading icon="hugeicons:mail-01" title="Contacto" />
+    <div
+      class="panel flex flex-col gap-8 rounded-2xl px-5 py-10 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10"
+    >
+      <div class="min-w-0">
+        <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+          Hablemos de <span class="text-glow">tu próximo proyecto</span>
+        </h2>
+        <a
+          href="mailto:mejia9070@gmail.com"
+          class="mt-3 inline-flex min-h-11 items-center text-lg wrap-anywhere underline decoration-glow/50 decoration-2 underline-offset-8 transition-colors hover:text-ink hover:decoration-glow"
+        >mejia9070@gmail.com</a>
+      </div>
 
-    <a
-      href="mailto:mejia9070@gmail.com"
-      class="mt-8 inline-block py-2 text-[clamp(1.25rem,0.9rem+2.2vw,2.25rem)] font-semibold wrap-anywhere text-ink underline decoration-line-strong decoration-2 underline-offset-8 transition-colors hover:decoration-ink"
-    >mejia9070@gmail.com</a>
-
-    <div class="mt-8 flex flex-wrap gap-3">
-      <Button
-        href="https://www.linkedin.com/in/andresfelipemejiar"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Icon name="fa6-brands:linkedin" class="size-5" aria-hidden="true" />
-        LinkedIn
-      </Button>
-      <Button href="https://github.com/mejia907" target="_blank" rel="noopener noreferrer">
-        <Icon name="fa6-brands:github" class="size-5" aria-hidden="true" />
-        GitHub
-      </Button>
+      <div class="flex flex-wrap gap-3 lg:shrink-0">
+        <Button variant="solid" href="mailto:mejia9070@gmail.com">
+          Escríbeme
+          <Icon name="ph:paper-plane-tilt" class="size-5" aria-hidden="true" />
+        </Button>
+        <Button
+          href="https://www.linkedin.com/in/andresfelipemejiar"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name="fa6-brands:linkedin" class="size-5" aria-hidden="true" />
+          LinkedIn
+        </Button>
+        <Button href="https://github.com/mejia907" target="_blank" rel="noopener noreferrer">
+          <Icon name="fa6-brands:github" class="size-5" aria-hidden="true" />
+          GitHub
+        </Button>
+      </div>
     </div>
   </div>
 </section>

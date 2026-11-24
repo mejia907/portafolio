@@ -1,30 +1,33 @@
 ---
 import { Icon } from "astro-icon/components";
+import Button from "./common/Button.astro";
 import { navigation } from "../data/navigation";
-
-const iconButton =
-  "size-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-200 hover:border-ink hover:bg-surface-raised";
 ---
 
-<header class="sticky top-0 z-50 border-b border-line bg-canvas/95 backdrop-blur-sm">
-  <div class="wrap flex h-16 items-center justify-between gap-4">
-    <a
-      href="#profile"
-      class="inline-flex min-h-11 items-center whitespace-nowrap text-lg font-semibold tracking-tight text-ink lg:text-xl"
+<header
+  class="sticky top-0 z-50 pt-3 before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-full before:bg-linear-to-b before:from-canvas before:to-transparent sm:pt-4"
+>
+  <div class="wrap flex items-center gap-3 lg:gap-6">
+    <div
+      class="panel-solid flex h-14 flex-1 items-center justify-between gap-4 rounded-xl pl-4 pr-2 lg:pr-3"
     >
-      Andrés F. Mejía
-    </a>
+      <a
+        href="#profile"
+        class="inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-lg font-semibold text-ink"
+      >
+        <Icon name="ph:code-bold" class="size-6 text-glow" aria-hidden="true" />
+        <span><span class="text-glow">Andrés</span> Mejía</span>
+      </a>
 
-    <div class="flex items-center gap-2 lg:gap-4">
-      <nav class="hidden md:block" aria-label="Navegación principal">
-        <ul class="flex items-center lg:gap-2">
+      <nav class="hidden lg:block" aria-label="Navegación principal">
+        <ul class="flex items-center gap-1">
           {
             navigation.map((item) => (
               <li>
                 <a
                   href={item.href}
                   data-nav-link
-                  class="inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-8 transition-colors hover:text-ink hover:underline aria-[current]:text-ink aria-[current]:underline aria-[current]:decoration-2 lg:px-3"
+                  class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium transition-colors duration-200 hover:text-ink aria-[current]:bg-glow/15 aria-[current]:text-glow xl:px-4"
                 >
                   {item.name}
                 </a>
@@ -34,89 +37,53 @@ const iconButton =
         </ul>
       </nav>
 
-      <button id="themeToggle" aria-label="Cambiar tema" class:list={["inline-flex", iconButton]} type="button">
-        <Icon name="ph:moon-stars" class="size-5 dark:hidden" aria-hidden="true" />
-        <Icon name="ph:sun-dim" class="hidden size-5 dark:block" aria-hidden="true" />
-      </button>
-
       <button
         id="toggleMenu"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="menu"
-        class:list={["group inline-flex md:hidden", iconButton]}
+        class="group inline-flex size-11 items-center justify-center rounded-lg text-ink transition-colors hover:bg-glow/15 lg:hidden"
         type="button"
       >
-        <Icon name="proicons:menu" class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
-        <Icon name="proicons:cancel" class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
+        <Icon name="ph:list" class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
+        <Icon name="ph:x" class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
       </button>
+    </div>
+
+    <div class="hidden rounded-xl bg-canvas sm:block">
+      <Button href="#contact" class="h-14">
+        Hablemos
+        <Icon name="ph:paper-plane-tilt" class="size-5" aria-hidden="true" />
+      </Button>
     </div>
   </div>
 
   {/* Menú móvil */}
-  <nav
-    id="menu"
-    hidden
-    aria-label="Menú móvil"
-    class="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-y border-line bg-surface shadow-lg shadow-slate-950/10 md:hidden"
-  >
-    <ul class="wrap py-2">
-      {
-        navigation.map((item) => (
-          <li class="border-b border-line last:border-b-0">
-            <a
-              href={item.href}
-              data-nav-link
-              class="flex min-h-12 items-center text-base font-medium hover:text-ink aria-[current]:font-semibold aria-[current]:text-ink"
-            >
-              {item.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <nav id="menu" hidden aria-label="Menú móvil" class="absolute inset-x-0 top-full lg:hidden">
+    <div class="wrap pt-2">
+      <ul
+        class="panel-solid max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain rounded-xl px-4 py-2"
+      >
+        {
+          navigation.map((item) => (
+            <li class="border-b border-line/60 last:border-b-0">
+              <a
+                href={item.href}
+                data-nav-link
+                class="flex min-h-12 items-center text-base font-medium transition-colors hover:text-ink aria-[current]:text-glow"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </nav>
 </header>
 
 <script>
-  const THEME_KEY = "theme-preference";
   const root = document.documentElement;
-
-  // Tema
-  const themeToggle = document.getElementById("themeToggle");
-  const themeColor = document.querySelector('meta[name="theme-color"]');
-  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-  const getStoredTheme = () => {
-    try {
-      return localStorage.getItem(THEME_KEY);
-    } catch {
-      return null;
-    }
-  };
-
-  const applyTheme = (isDark: boolean) => {
-    root.classList.toggle("dark", isDark);
-    themeColor?.setAttribute("content", isDark ? "#020617" : "#f8fafc");
-    themeToggle?.setAttribute(
-      "aria-label",
-      isDark ? "Activar modo claro" : "Activar modo oscuro",
-    );
-  };
-
-  applyTheme(root.classList.contains("dark"));
-
-  themeToggle?.addEventListener("click", () => {
-    const isDark = !root.classList.contains("dark");
-    applyTheme(isDark);
-    try {
-      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-    } catch {}
-  });
-
-  systemTheme.addEventListener("change", (event) => {
-    if (!getStoredTheme()) applyTheme(event.matches);
-  });
 
   // Menú móvil
   const toggleMenu = document.getElementById("toggleMenu");
@@ -149,7 +116,7 @@ const iconButton =
   });
 
   // Al pasar a escritorio se cierra; el resize de la barra del móvil no lo afecta
-  window.matchMedia("(min-width: 48rem)").addEventListener("change", () => setMenuOpen(false));
+  window.matchMedia("(min-width: 64rem)").addEventListener("change", () => setMenuOpen(false));
 
   // Sección actual en la navegación
   const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");

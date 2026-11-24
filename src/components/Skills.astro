@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import SectionHeading from "./common/SectionHeading.astro";
+
+// Los logos oscuros usan una versión monocroma para verse sobre el fondo negro
+const skills = [
+  { name: "PHP", group: "Backend", icon: "devicon:php" },
+  { name: "Laravel", group: "Backend", icon: "devicon:laravel" },
+  { name: "Node.js", group: "Backend", icon: "devicon:nodejs" },
+  { name: "NestJS", group: "Backend", icon: "devicon:nestjs" },
+  { name: "JavaScript", group: "Lenguaje", icon: "devicon:javascript" },
+  { name: "TypeScript", group: "Lenguaje", icon: "devicon:typescript" },
+  { name: "React", group: "Frontend", icon: "devicon:react" },
+  { name: "Next.js", group: "Frontend", icon: "simple-icons:nextdotjs" },
+  { name: "Astro", group: "Frontend", icon: "simple-icons:astro" },
+  { name: "Tailwind", group: "Frontend", icon: "devicon:tailwindcss" },
+  { name: "jQuery", group: "Frontend", icon: "simple-icons:jquery" },
+  { name: "HTML", group: "Frontend", icon: "devicon:html5" },
+  { name: "CSS", group: "Frontend", icon: "devicon:css3" },
+  { name: "MySQL", group: "Base de datos", icon: "simple-icons:mysql" },
+  { name: "MariaDB", group: "Base de datos", icon: "simple-icons:mariadb" },
+  { name: "PostgreSQL", group: "Base de datos", icon: "devicon:postgresql" },
+  { name: "MongoDB", group: "Base de datos", icon: "devicon:mongodb" },
+  { name: "Prisma", group: "Base de datos", icon: "devicon:prisma" },
+];
+---
+
+<section id="skills" class="pt-20 lg:pt-32 xl:pt-36">
+  <div class="wrap">
+    <SectionHeading icon="ph:code" title="Habilidades" />
+    <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+      {
+        skills.map((skill) => (
+          <li class="panel rounded-xl p-4 sm:p-5">
+            <Icon name={skill.icon} class="size-9 text-ink" aria-hidden="true" />
+            <p class="mt-4 font-semibold leading-snug text-ink">{skill.name}</p>
+            <p class="mt-0.5 text-sm text-muted">{skill.group}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

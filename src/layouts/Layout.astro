@@ -1,10 +1,6 @@
 ---
-import '@fontsource/poppins/latin-400.css';
-import '@fontsource/poppins/latin-500.css';
-import '@fontsource/poppins/latin-600.css';
-import '@fontsource/poppins/latin-700.css';
-import poppins400 from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
-import poppins700 from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
+import '@fontsource-variable/onest/wght.css';
+import onest from '@fontsource-variable/onest/files/onest-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 ---
 <!doctype html>
@@ -12,25 +8,11 @@ import '../styles/global.css';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-		<meta name="theme-color" content="#f8fafc" />
+		<meta name="theme-color" content="#02090c" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preload" href={poppins400} as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href={poppins700} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={onest} as="font" type="font/woff2" crossorigin />
 		<meta name="description" content="Desarrollador full-stack experto en PHP, NodeJS y React. Construyo aplicaciones web escalables y eficientes desde el front-end hasta el back-end.">
 		<title>Andrés Felipe Mejía | Desarrollador FullStack</title>
-		<script is:inline>
-			(() => {
-				let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				try {
-					const storedTheme = localStorage.getItem('theme-preference');
-					if (storedTheme) isDark = storedTheme === 'dark';
-				} catch {}
-				document.documentElement.classList.toggle('dark', isDark);
-				document
-					.querySelector('meta[name="theme-color"]')
-					.setAttribute('content', isDark ? '#020617' : '#f8fafc');
-			})();
-		</script>
 		<script is:inline>
 			// Animación de entrada: en cada carga que empieza en la parte superior de la página
 			(() => {
@@ -70,8 +52,7 @@ import '../styles/global.css';
 					// Espera la fuente y la foto, pero nunca más de 1,2 s
 					await Promise.race([
 						Promise.allSettled([
-							document.fonts.load('400 1em Poppins'),
-							document.fonts.load('700 1em Poppins'),
+							document.fonts.load('600 1em "Onest Variable"'),
 							photo?.decode(),
 						]),
 						wait(1200),
@@ -87,7 +68,7 @@ import '../styles/global.css';
 	<body class="font-sans antialiased">
 		<a
 			href="#main"
-			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-full focus:bg-action focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-on-action"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-xl focus:bg-glow focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-on-glow"
 		>
 			Saltar al contenido
 		</a>

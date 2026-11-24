@@ -12,14 +12,13 @@ import SectionHeading from "./common/SectionHeading.astro";
 import Badge from "./common/Badge.astro";
 ---
 
-<section id="projects" class="py-16 md:py-24">
+<section id="projects" class="pt-20 lg:pt-28">
   <div class="wrap">
-    <SectionHeading icon="hugeicons:source-code-square" title="Proyectos" />
-    <div class="mt-8 grid gap-6 md:grid-cols-2">
+    <SectionHeading icon="ph:folder-notch" title="Proyectos" />
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <Card
         image={enrutarcol}
         title="Enrutarcol"
-        class="md:col-span-2"
         description="Aplicación web que permite administrar solicitudes de enrutamiento a clientes, así como gestionar clientes y usuarios de manera eficiente. La aplicación ofrece una interfaz intuitiva."
         offline
       >
@@ -51,14 +50,10 @@ import Badge from "./common/Badge.astro";
         <Badge image="lineicons:astro" title="Astro" />
         <Badge image="lineicons:tailwindcss" title="Tailwind" />
       </Card>
-    </div>
 
-    <h3 class="mt-16 text-2xl font-semibold sm:text-3xl">Otros proyectos</h3>
-    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-6">
       <Card
         image={linktree_clone}
         title="Linktree-Clone"
-        class="lg:col-span-3"
         description="Clon de Linktree que permite el inicio de sesión con Clerk y tiene la funcionalidad de crear, editar, compartir y eliminar enlaces, además la opción de editar perfiles."
         url="https://linktree-clone-eosin.vercel.app/"
         github="https://github.com/mejia907/linktree-clone/"
@@ -72,7 +67,6 @@ import Badge from "./common/Badge.astro";
       <Card
         image={tasksoft}
         title="Task-Soft"
-        class="lg:col-span-3"
         description="Aplicativo implementado con Laravel Livewire el cual permite crear, editar, compartir y eliminar tareas."
         github="https://github.com/mejia907/tasksoft/"
       >
@@ -83,7 +77,6 @@ import Badge from "./common/Badge.astro";
       <Card
         image={api_games}
         title="API Games"
-        class="lg:col-span-2"
         description="Aplicativo desarrollado con Angular (14), que permite consumir una API de video juegos (Freetogame) con NestJS."
         github="https://github.com/mejia907/api-games"
       >
@@ -95,7 +88,6 @@ import Badge from "./common/Badge.astro";
       <Card
         image={poke_api}
         title="Poke API"
-        class="lg:col-span-2"
         description="Aplicación realizada con el framework Qwik, utilizando OpenAI e implementando el diseño con Tailwind."
         github="https://github.com/mejia907/pokeapp-qwik"
       >
@@ -105,7 +97,6 @@ import Badge from "./common/Badge.astro";
       <Card
         image={cinemapedia}
         title="Cinemapedia"
-        class="md:col-span-2"
         description="Aplicativo desarrollado en Flutter para conocer la cartelera de un cinema a través de una API, permite ver detalle de cada película y definir las favoritas."
         github="https://github.com/mejia907/cinemapedia"
       >

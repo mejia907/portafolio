@@ -1,11 +1,15 @@
 ---
+import { Icon } from "astro-icon/components";
 import { navigation } from "../data/navigation";
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-line bg-surface pb-[max(2rem,env(safe-area-inset-bottom))] pt-8">
-  <div class="wrap flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+<footer class="pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
+  <div class="wrap flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+    <p class="text-sm text-muted max-xl:order-last">
+      Copyright © {year} Andrés Felipe Mejía Restrepo.
+    </p>
     <nav aria-label="Pie de página">
       <ul class="-mx-3 flex flex-wrap text-sm font-medium">
         {
@@ -13,7 +17,7 @@ const year = new Date().getFullYear();
             <li>
               <a
                 href={item.href}
-                class="inline-flex min-h-11 items-center px-3 underline-offset-8 transition-colors hover:text-ink hover:underline"
+                class="inline-flex min-h-11 items-center px-3 transition-colors hover:text-glow"
               >
                 {item.name}
               </a>
@@ -22,6 +26,14 @@ const year = new Date().getFullYear();
         }
       </ul>
     </nav>
-    <p class="text-sm text-muted">Copyright © {year} Andrés Felipe Mejía Restrepo.</p>
+    <a
+      href="#profile"
+      class="inline-flex min-h-11 items-center gap-3 self-start text-sm font-medium transition-colors hover:text-glow xl:self-auto"
+    >
+      <span class="grid size-9 place-items-center rounded-full border border-glow/60 text-glow">
+        <Icon name="ph:arrow-up" class="size-4" aria-hidden="true" />
+      </span>
+      Volver arriba
+    </a>
   </div>
 </footer>
