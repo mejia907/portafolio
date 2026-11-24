@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+import SectionHeading from "./common/SectionHeading.astro";
+
+const services = [
+  {
+    icon: "ph:browsers-light",
+    title: "Desarrollo web",
+    text: "Sitios y aplicaciones completas, de la interfaz al servidor.",
+  },
+  {
+    icon: "ph:monitor-light",
+    title: "Desarrollo frontend",
+    text: "Interfaces que funcionan en móvil y escritorio, con React, Next.js, Astro y Tailwind.",
+  },
+  {
+    icon: "ph:hard-drives-light",
+    title: "Desarrollo backend",
+    text: "Módulos a medida e integraciones entre sistemas con PHP, Laravel, Node.js y NestJS.",
+  },
+  {
+    icon: "ph:database-light",
+    title: "Bases de datos",
+    text: "Bases relacionales y documentales con MySQL, MariaDB, PostgreSQL y MongoDB.",
+  },
+];
+---
+
+<section id="services" class="section pb-0!">
+  <div class="wrap">
+    <SectionHeading title="Servicios" />
+    <ul data-stagger="4" class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        services.map((service) => (
+          <li data-reveal="both" class="service panel rounded-xl p-6">
+            <Icon name={service.icon} class="size-12 text-accent" aria-hidden="true" />
+            <h3 class="mt-5 text-lg font-semibold leading-snug">{service.title}</h3>
+            <p class="mt-2 text-base leading-relaxed">{service.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      data-reveal="both"
+      class="ai mt-4 grid gap-x-12 gap-y-8 rounded-xl border border-accent/45 p-6 sm:p-8 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:p-10"
+    >
+      <div>
+        <h3 class="flex items-center gap-3 text-2xl font-bold tracking-[-0.015em] sm:text-3xl">
+          <Icon name="simple-icons:claude" class="size-8 shrink-0 text-accent" aria-hidden="true" />
+          Desarrollo con IA
+        </h3>
+        <p class="mt-4 max-w-[52ch] text-base leading-relaxed sm:text-lg">
+          Uso Claude para avanzar más rápido en lo repetitivo. La arquitectura, las decisiones y la
+          revisión son mías.
+        </p>
+      </div>
+      <dl class="grid gap-5">
+        <div class="border-l border-line-strong pl-5">
+          <dt class="font-semibold text-ink">Ventas Gaz</dt>
+          <dd class="mt-1">
+            App Android en React Native: la creé yo y la rediseñé con Claude Code.{" "}
+            <a
+              href="#ventas-gaz"
+              class="relative inline-block font-semibold text-accent underline decoration-accent/50 underline-offset-4 transition-colors after:absolute after:-inset-x-1 after:-inset-y-2.5 hover:text-accent-strong"
+            >Ver proyecto</a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ai {
+    background:
+      radial-gradient(
+        34rem 20rem at 0% 0%,
+        color-mix(in oklab, var(--accent) 20%, transparent),
+        transparent 70%
+      ),
+      var(--surface);
+  }
+
+  .service {
+    background:
+      radial-gradient(
+        14rem 10rem at 100% 0%,
+        color-mix(in oklab, var(--accent) 22%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(155deg, var(--surface-raised), var(--surface) 70%);
+  }
+</style>

@@ -1,28 +1,76 @@
 ---
+import { Icon } from "astro-icon/components";
+import Button from "./common/Button.astro";
+import ColombiaMap from "./ColombiaMap.astro";
 import SectionHeading from "./common/SectionHeading.astro";
+import curriculum from "../assets/docs/HOJA_DE_VIDA_ANDRES_FELIPE_MEJIA_RESTREPO.pdf";
+
+const facts = [
+  { value: "13+", label: "Años de backend" },
+  { value: "4+", label: "Años de frontend" },
+  { value: "9", label: "Proyectos aquí" },
+  { value: "8", label: "Certificados" },
+];
 ---
 
-<section id="about" class="pt-20 lg:pt-28">
-  <div class="wrap">
-    <SectionHeading icon="ph:user" title="Sobre mí" />
-
-    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_22rem] lg:gap-16">
-      <p class="max-w-prose text-base leading-relaxed sm:text-lg">
-        Como ingeniero en sistemas tengo los conocimientos, las habilidades y las
-        características personales para mi adecuado desempeño en las actividades
-        de análisis, diseño y programación de sistemas de información. Mi
-        capacidad analítica me permite comprender necesidades del negocio y
-        traducirlas en soluciones tecnológicas eficientes. Además, mi pasión por
-        la innovación me impulsa a buscar constantemente nuevas formas de mejorar
-        procesos y productos.
+<section id="about" class="band">
+  <div class="wrap grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+    <div>
+      <SectionHeading title="Sobre mí" />
+      <p data-reveal="in" class="mt-6 max-w-prose text-base leading-relaxed sm:text-lg">
+        Soy ingeniero de sistemas y desarrollo software desde 2013. Empecé
+        personalizando ERP y CRM en PHP, y con el tiempo sumé el frontend: hoy
+        construyo aplicaciones completas con Laravel, Node.js, React y Next.js.
+        Primero entiendo qué necesita el negocio; después elijo la solución. Hoy
+        también desarrollo con Claude.
       </p>
 
-      <div class="panel self-start rounded-xl p-6">
-        <h3 class="text-lg font-semibold">Educación</h3>
-        <ul class="mt-3 grid gap-3">
-          <li>Ingeniería de Sistemas</li>
-          <li>Tecnólogo en Análisis y desarrollo de Sistemas de Información</li>
-        </ul>
+      <dl data-stagger="4" class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {
+          facts.map((fact) => (
+            <div data-reveal="both" class="panel flex flex-col-reverse items-center justify-end rounded-xl px-2 py-4 text-center">
+              <dt class="mt-1 text-sm leading-snug">{fact.label}</dt>
+              <dd class="text-3xl font-bold leading-none text-accent">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <Button class="mt-8" href={curriculum} download="CV-Andres-Felipe-Mejia.pdf">
+        Descargar CV
+        <Icon name="ph:download-simple" class="size-5 text-accent" aria-hidden="true" />
+      </Button>
+    </div>
+
+    <div class="grid content-start gap-6 sm:grid-cols-[1fr_auto] sm:items-center lg:grid-cols-1 xl:grid-cols-[1fr_auto]">
+      <dl data-reveal="in" class="panel grid gap-5 rounded-xl p-6">
+        <div class="flex gap-4">
+          <Icon name="ph:user" class="mt-0.5 size-6 shrink-0 text-accent" aria-hidden="true" />
+          <div>
+            <dt class="text-sm text-muted">Nombre</dt>
+            <dd class="font-medium text-ink">Andrés Felipe Mejía Restrepo</dd>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <Icon name="ph:map-pin" class="mt-0.5 size-6 shrink-0 text-accent" aria-hidden="true" />
+          <div>
+            <dt class="text-sm text-muted">Ubicación</dt>
+            <dd class="font-medium text-ink">Manizales, Colombia</dd>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <Icon name="ph:graduation-cap" class="mt-0.5 size-6 shrink-0 text-accent" aria-hidden="true" />
+          <div>
+            <dt class="text-sm text-muted">Educación</dt>
+            <dd class="font-medium text-ink">Ingeniería de Sistemas</dd>
+            <dd class="mt-1 font-medium text-ink">
+              Tecnólogo en Análisis y desarrollo de Sistemas de Información
+            </dd>
+          </div>
+        </div>
+      </dl>
+      <div data-reveal="in" class="flex" style="--i: 2">
+        <ColombiaMap />
       </div>
     </div>
   </div>

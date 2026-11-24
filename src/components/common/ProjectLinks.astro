@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  url?: string;
+  github?: string;
+  /** El sitio ya no está publicado: se indica en lugar del enlace */
+  offline?: boolean;
+}
+
+const { title, url, github, offline } = Astro.props;
+
+const linkClass =
+  "inline-flex min-h-11 items-center gap-2 text-sm font-semibold transition-colors duration-200";
+---
+
+{
+  url && (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Ver ahora: ${title}`}
+      class:list={[linkClass, "text-accent hover:text-accent-strong"]}
+    >
+      Ver ahora
+      <Icon name="ph:arrow-square-out" class="size-5" aria-hidden="true" />
+    </a>
+  )
+}
+{
+  github && (
+    <a
+      href={github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Ver código de ${title}`}
+      class:list={[linkClass, "text-ink hover:text-accent"]}
+    >
+      <Icon name="fa6-brands:github" class="size-4.5" aria-hidden="true" />
+      Ver código
+    </a>
+  )
+}
+{offline && <p class="text-sm text-muted">Proyecto fuera de línea</p>}

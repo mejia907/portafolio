@@ -1,0 +1,214 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import Badge from "./common/Badge.astro";
+import home from "../assets/images/ventas_gaz_inicio.webp";
+import client from "../assets/images/ventas_gaz_cliente.webp";
+import clients from "../assets/images/ventas_gaz_clientes.webp";
+
+const screens = [
+  {
+    image: home,
+    alt: "Inicio de Ventas Gaz: ventas del día y del mes, y clientes por contactar",
+  },
+  {
+    image: client,
+    alt: "Detalle de un cliente: días de gas restantes, acciones rápidas e historial de ventas",
+  },
+  {
+    image: clients,
+    alt: "Lista de clientes en tema oscuro, con búsqueda, filtros y estado de cada uno",
+  },
+];
+---
+
+<article id="ventas-gaz" class="app mt-10 overflow-clip rounded-2xl border border-line">
+  <div class="p-6 sm:p-8 lg:p-10 lg:pr-0" data-reveal="in">
+    <h3 class="text-2xl font-bold tracking-[-0.015em] sm:text-3xl">Ventas Gaz</h3>
+    <p class="mt-3 max-w-[52ch] text-base leading-relaxed sm:text-lg">
+      App Android para vendedores de cilindros de gas. Registra clientes y ventas, estima cuándo se le
+      acaba el gas a cada cliente y avisa a quién contactar antes de que pase. Funciona sin conexión y
+      sincroniza los datos al volver la red.
+    </p>
+    <ul class="mt-5 flex flex-wrap gap-1.5" aria-label="Tecnologías">
+      <Badge image="devicon:reactnative" title="React Native" />
+      <Badge image="devicon:supabase" title="Supabase" />
+      <Badge image="simple-icons:claudecode" title="Claude Code" />
+    </ul>
+
+    <dl class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+      <div>
+        <dt class="flex items-center gap-2 font-semibold text-ink">
+          <Icon name="ph:user" class="size-5 text-accent" aria-hidden="true" />
+          Lo que hice yo
+        </dt>
+        <dd class="mt-2 text-base leading-relaxed">
+          Creé la app y su primera versión funcional: inicio de sesión, clientes, ventas, cálculo de
+          días restantes, modo sin conexión, backend en Supabase y notificaciones push. Después dirigí
+          las mejoras: aprobé cada fase, detecté fallos y corregí propuestas de diseño.
+        </dd>
+      </div>
+      <div>
+        <dt class="flex items-center gap-2 font-semibold text-ink">
+          <Icon name="simple-icons:claude" class="size-5 text-accent" aria-hidden="true" />
+          Lo que hizo Claude Code
+        </dt>
+        <dd class="mt-2 text-base leading-relaxed">
+          Con mi dirección, auditó el diseño, programó el rediseño de la interfaz e hizo pruebas en el
+          emulador.
+        </dd>
+      </div>
+    </dl>
+    <p class="mt-6 text-sm text-muted">Capturas con datos de ejemplo.</p>
+  </div>
+
+  <div class="stage" data-reveal="in" role="region" aria-label="Capturas de Ventas Gaz" tabindex="0">
+    {
+      screens.map((screen) => (
+        <div class="phone">
+          <Image
+            src={screen.image}
+            alt={screen.alt}
+            widths={[240, 360, 480, 720]}
+            sizes="(min-width: 1024px) 230px, (min-width: 640px) 220px, 62vw"
+          />
+        </div>
+      ))
+    }
+  </div>
+</article>
+
+<style>
+  .app {
+    scroll-margin-top: 6rem;
+    background:
+      radial-gradient(
+        40rem 30rem at 100% 30%,
+        color-mix(in oklab, var(--accent) 15%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(155deg, var(--surface-raised), var(--canvas) 75%);
+  }
+
+  .phone {
+    overflow: hidden;
+    border: 5px solid oklch(0.1 0.01 258);
+    border-radius: 1.4rem;
+    background: oklch(0.1 0.01 258);
+    box-shadow:
+      0 0 0 1px var(--line-strong),
+      0 28px 50px -18px rgb(0 0 0 / 0.75);
+  }
+
+  .phone :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1.05rem;
+  }
+
+  /* Móvil: las pantallas se deslizan a un tamaño que se puede leer */
+  .stage {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    padding: 0.5rem 1.5rem 2.5rem;
+  }
+
+  .stage .phone {
+    flex: 0 0 62%;
+    scroll-snap-align: start;
+  }
+
+  /* Desde tablet: abanico con el inicio al frente */
+  @media (width >= 40rem) {
+    .stage {
+      position: relative;
+      display: block;
+      height: 38rem;
+      overflow: visible;
+      padding: 0;
+    }
+
+    .stage .phone {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      width: 14.5rem;
+      transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stage .phone:nth-child(1) {
+      z-index: 3;
+      transform: translateX(-50%);
+    }
+
+    .stage .phone:nth-child(2) {
+      z-index: 2;
+      transform: translateX(-112%) translateY(1.5rem) rotate(-6deg) scale(0.9);
+    }
+
+    .stage .phone:nth-child(3) {
+      z-index: 1;
+      transform: translateX(12%) translateY(1.5rem) rotate(6deg) scale(0.9);
+    }
+  }
+
+  @media (width >= 64rem) {
+    .app {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 29rem;
+      align-items: center;
+    }
+
+    .stage {
+      height: 31.5rem;
+    }
+
+    .stage .phone {
+      top: 2.5rem;
+      width: 11.75rem;
+    }
+  }
+
+  @media (width >= 80rem) {
+    .app {
+      grid-template-columns: minmax(0, 1fr) 34rem;
+    }
+
+    .stage {
+      height: 37rem;
+    }
+
+    .stage .phone {
+      width: 14rem;
+    }
+  }
+
+  @media (width >= 40rem) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .stage:hover .phone:nth-child(2) {
+      transform: translateX(-120%) translateY(1rem) rotate(-8deg) scale(0.92);
+    }
+
+    .stage:hover .phone:nth-child(3) {
+      transform: translateX(20%) translateY(1rem) rotate(8deg) scale(0.92);
+    }
+  }
+</style>
+
+<script>
+  // Solo es un área de desplazamiento (y parada de teclado) cuando de verdad se desliza
+  const stage = document.querySelector<HTMLElement>("#ventas-gaz .stage");
+  const wide = window.matchMedia("(min-width: 40rem)");
+
+  const update = () => {
+    if (wide.matches) stage?.removeAttribute("tabindex");
+    else stage?.setAttribute("tabindex", "0");
+  };
+
+  wide.addEventListener("change", update);
+  update();
+</script>

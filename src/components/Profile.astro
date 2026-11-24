@@ -3,245 +3,447 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import Button from "./common/Button.astro";
 import IconLink from "./common/IconLink.astro";
-import Laptop from "./Laptop.astro";
-import portrait from "../assets/perfil_escena.webp";
-import curriculum from "../assets/docs/HOJA_DE_VIDA_ANDRES_FELIPE_MEJIA_RESTREPO.pdf";
+import portrait from "../assets/retrato.webp";
 
 const nameWords = ["Andrés", "Felipe", "Mejía"];
 
-const facts = [
-  { icon: "ph:hard-drives", value: "10+ años", label: "Desarrollo backend" },
-  { icon: "ph:browser", value: "4+ años", label: "Desarrollo frontend" },
-  { icon: "ph:folder-notch", value: "8 proyectos", label: "En este portafolio" },
-  { icon: "ph:certificate", value: "8 certificados", label: "Platzi, MongoDB y CertiProf" },
+const chips = [
+  { name: "Laravel", icon: "devicon:laravel" },
+  { name: "PHP", icon: "devicon:php" },
+  { name: "React", icon: "devicon:react" },
+  { name: "Node.js", icon: "devicon:nodejs" },
+  { name: "Claude", icon: "simple-icons:claude", accent: true },
 ];
+
+const ticks = Array.from({ length: 72 }, (_, index) => index * 5);
 ---
 
-<section id="profile" class="wrap scroll-mt-24 pt-4 sm:pt-6">
-  <div class="panel hero rounded-2xl px-5 pb-8 pt-6 sm:px-8 lg:px-10 lg:py-10">
-    <div class="hero-portrait" data-intro style="--at: 350ms; --blur: 18px">
-      <Image
-        src={portrait}
-        alt="Andrés Felipe Mejía Restrepo"
-        widths={[360, 540, 720, 1022]}
-        sizes="(min-width: 1024px) 560px, (min-width: 640px) 420px, 320px"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-
+<section id="profile" class="hero-band scroll-mt-20">
+  <div class="wrap hero">
     <div class="hero-text max-lg:text-center">
-      <p
-        data-intro
-        style="--at: 0ms; --blur: 8px"
-        class="inline-flex items-center gap-2 rounded-lg bg-glow/12 px-3 py-1.5 text-sm font-medium text-glow"
-      >
-        <Icon name="ph:map-pin" class="size-4 shrink-0" aria-hidden="true" />
-        Manizales, Colombia
-      </p>
       <h1
-        class="mt-5 text-[clamp(2.25rem,1.55rem+2.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight"
+        class="text-[clamp(2.5rem,1.5rem+4vw,4.25rem)] font-bold leading-[1.04] tracking-[-0.025em]"
       >
-        <span data-intro class="block font-normal text-muted" style="--at: 0ms">Hola, soy{" "}</span>
-        <span class="text-glow">
-          {
-            nameWords.map((word, index) => (
-              <>
-                <span data-intro class="inline-block" style={`--at: ${80 + index * 80}ms`}>
-                  {word}
-                  {index === nameWords.length - 1 && <span class="caret" aria-hidden="true" />}
-                </span>{" "}
-              </>
-            ))
-          }
+        <span
+          data-intro
+          class="greeting mb-3 text-[clamp(1.125rem,1rem+0.5vw,1.375rem)] font-medium tracking-normal text-accent"
+          style="--at: 0ms">Hola, soy{" "}</span
+        >
+        {
+          nameWords.map((word, index) => (
+            <>
+              <span
+                data-intro
+                class:list={["inline-block", index === nameWords.length - 1 && "text-accent"]}
+                style={`--at: ${80 + index * 80}ms`}
+              >
+                {word}
+              </span>{" "}
+            </>
+          ))
+        }
+        <span
+          data-intro
+          style="--at: 420ms; --blur: 8px"
+          class="mt-4 block text-[clamp(1.25rem,1.1rem+0.8vw,1.75rem)] font-normal leading-normal tracking-normal"
+        >
+          Desarrollador full-stack<span class="caret" aria-hidden="true"></span>
         </span>
       </h1>
-      <p data-intro style="--at: 420ms; --blur: 8px" class="mt-4 text-xl font-medium text-ink">
-        Desarrollador FullStack.
-      </p>
       <p
         data-intro
         style="--at: 490ms; --blur: 8px"
-        class="mt-4 max-w-[36ch] text-base lg:max-w-[30ch] leading-relaxed max-lg:mx-auto"
+        class="mt-4 max-w-[44ch] text-base leading-relaxed max-lg:mx-auto sm:text-lg"
       >
-        Construyo aplicaciones web escalables y eficientes desde el front-end hasta el back-end.
+        Desarrollo aplicaciones web y móviles completas, de la interfaz a los datos.
       </p>
       <div
         data-intro
         style="--at: 560ms; --blur: 8px"
-        class="mt-8 flex flex-wrap gap-3 max-lg:justify-center max-sm:mx-auto max-sm:max-w-64 max-sm:flex-col"
+        class="mt-8 flex flex-wrap gap-3 max-lg:justify-center"
       >
-        <Button variant="solid" href="#projects">
-          Ver proyectos
-          <Icon name="ph:arrow-up-right" class="size-5" aria-hidden="true" />
+        <Button variant="solid" href="#contact">
+          Hablemos
+          <Icon name="ph:arrow-right" class="size-5" aria-hidden="true" />
         </Button>
-        <Button href={curriculum} download="CV-Andres-Felipe-Mejia.pdf">
-          Descargar CV
-          <Icon name="ph:download-simple" class="size-5" aria-hidden="true" />
-        </Button>
+        <Button href="#projects">Ver proyectos</Button>
+      </div>
+      <div data-intro style="--at: 620ms; --blur: 8px">
+        <p class="mt-7 flex items-center gap-2 text-sm max-lg:justify-center">
+          <Icon name="ph:map-pin" class="size-5 text-accent" aria-hidden="true" />
+          Manizales, Colombia
+        </p>
+        <div class="mt-5 flex gap-3 max-lg:justify-center">
+          <IconLink
+            href="https://github.com/mejia907"
+            icon="fa6-brands:github"
+            label="Perfil de GitHub"
+          />
+          <IconLink
+            href="https://www.linkedin.com/in/andresfelipemejiar"
+            icon="fa6-brands:linkedin"
+            label="Perfil de LinkedIn"
+          />
+          <IconLink
+            href="mailto:mejia9070@gmail.com"
+            icon="ph:envelope-simple-bold"
+            label="Enviar un correo"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="hero-side" data-intro style="--at: 560ms; --blur: 8px">
-      <dl class="panel grid grid-cols-2 gap-x-4 gap-y-5 rounded-xl p-5 lg:grid-cols-1 lg:p-6">
+    <div class="hero-visual" data-intro style="--at: 300ms; --blur: 18px">
+      <svg class="rings" viewBox="0 0 600 600" aria-hidden="true">
+        <defs>
+          <linearGradient id="arc" x1="0" y1="1" x2="0.6" y2="0">
+            <stop offset="0" stop-color="var(--accent)" stop-opacity="0"></stop>
+            <stop offset="0.35" stop-color="var(--accent)"></stop>
+            <stop offset="0.8" stop-color="var(--accent)" stop-opacity="0.5"></stop>
+            <stop offset="1" stop-color="var(--accent)" stop-opacity="0"></stop>
+          </linearGradient>
+          <filter id="arc-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="9"></feGaussianBlur>
+          </filter>
+        </defs>
+        <circle cx="300" cy="300" r="292" class="ring"></circle>
+        <circle cx="300" cy="300" r="262" class="ring"></circle>
+        <g class="spin">
+          <circle cx="300" cy="300" r="277" class="ring dashed"></circle>
+          <circle cx="300" cy="23" r="4" class="dot"></circle>
+          <circle cx="577" cy="300" r="3" class="dot"></circle>
+          <circle cx="104" cy="496" r="3" class="dot"></circle>
+        </g>
+        <g class="ticks">
+          {ticks.map((angle) => <line x1="300" y1="44" x2="300" y2="52" transform={`rotate(${angle} 300 300)`} />)}
+        </g>
+        <path d="M 92 426 A 243 243 0 0 1 268 59" class="arc glow"></path>
+        <path d="M 92 426 A 243 243 0 0 1 268 59" class="arc"></path>
+        <path d="M 520 197 A 243 243 0 0 1 528 384" class="arc thin"></path>
+      </svg>
+
+      <Image
+        src={portrait}
+        alt="Andrés Felipe Mejía Restrepo"
+        widths={[320, 480, 640, 834]}
+        sizes="(min-width: 1280px) 460px, (min-width: 1024px) 400px, (min-width: 640px) 340px, 270px"
+        loading="eager"
+        fetchpriority="high"
+        class="portrait"
+      />
+
+      <ul class="chips" aria-label="Tecnologías principales">
         {
-          facts.map((fact) => (
-            <div class="flex gap-3 max-sm:flex-col max-sm:gap-2 sm:items-start">
-              <Icon name={fact.icon} class="size-6 shrink-0 text-glow" aria-hidden="true" />
-              <div class="flex flex-col-reverse">
-                <dt class="text-sm leading-snug">{fact.label}</dt>
-                <dd class="font-semibold leading-snug text-ink">{fact.value}</dd>
-              </div>
-            </div>
+          chips.map((chip) => (
+            <li>
+              <Icon
+                name={chip.icon}
+                class:list={["size-5 shrink-0", chip.accent && "text-accent"]}
+                aria-hidden="true"
+              />
+              {chip.name}
+            </li>
           ))
         }
-      </dl>
-      <div class="mt-4 flex gap-3 max-lg:justify-center">
-        <IconLink
-          href="https://github.com/mejia907"
-          icon="fa6-brands:github"
-          label="Perfil de GitHub"
-        />
-        <IconLink
-          href="https://www.linkedin.com/in/andresfelipemejiar"
-          icon="fa6-brands:linkedin"
-          label="Perfil de LinkedIn"
-        />
-        <IconLink
-          href="mailto:mejia9070@gmail.com"
-          icon="ph:envelope-simple-bold"
-          label="Enviar un correo"
-        />
-      </div>
-    </div>
-
-    <div class="hero-laptop" data-intro style="--at: 480ms; --blur: 14px">
-      <Laptop />
+      </ul>
     </div>
   </div>
 </section>
 
 <style>
+  .hero-band {
+    position: relative;
+    overflow: clip;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(
+        60rem 34rem at 74% 46%,
+        color-mix(in oklab, var(--surface-raised) 85%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        30rem 22rem at 58% 100%,
+        color-mix(in oklab, var(--accent) 9%, transparent),
+        transparent 70%
+      );
+  }
+
   .hero {
     display: grid;
-    gap: 2rem;
     justify-items: center;
-    isolation: isolate;
   }
 
-  /* Luz ambiental del panel, por debajo del rostro */
-  .hero::before {
+  .hero-text {
+    padding-block: 2rem 3.5rem;
+  }
+
+  /* Los guiones del saludo forman parte de la frase, no son un rótulo aparte */
+  .greeting {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .greeting::before,
+  .greeting::after {
     content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: radial-gradient(
-      ellipse 20rem 14rem at 50% 15rem,
-      color-mix(in oklab, var(--glow) 17%, transparent),
-      transparent 72%
-    );
+    width: 2rem;
+    height: 2px;
+    border-radius: 1px;
+    background: currentColor;
   }
 
-  .hero-portrait {
-    width: min(78%, 16rem);
-    margin-bottom: -4rem;
+  .hero-visual {
+    position: relative;
+    order: -1;
+    width: min(100%, 25rem);
+    padding-top: 1.75rem;
+    display: grid;
+    justify-items: center;
   }
 
-  .hero-portrait :global(img) {
-    width: 100%;
+  .portrait {
+    position: relative;
+    width: 66%;
     height: auto;
-    mask-image: linear-gradient(#000 58%, transparent 96%);
+    mask-image: linear-gradient(#000 88%, transparent);
   }
 
-  .hero-side {
-    width: 100%;
-    max-width: 34rem;
+  .rings {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    width: 112%;
+    translate: -50% -50%;
+    overflow: visible;
   }
 
-  .hero-laptop {
-    display: none;
-    width: 100%;
-    max-width: 27rem;
-    pointer-events: none;
+  .ring {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-opacity: 0.35;
+  }
+
+  .dashed {
+    stroke: var(--accent);
+    stroke-opacity: 0.55;
+    stroke-dasharray: 2 14;
+  }
+
+  .dot {
+    fill: var(--accent);
+  }
+
+  .ticks line {
+    stroke: var(--line-strong);
+    stroke-opacity: 0.45;
+  }
+
+  .arc {
+    fill: none;
+    stroke: url(#arc);
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+
+  .arc.glow {
+    stroke-width: 10;
+    opacity: 0.65;
+    filter: url(#arc-glow);
+  }
+
+  .arc.thin {
+    stroke-width: 2;
+    stroke: var(--accent);
+    stroke-opacity: 0.5;
+  }
+
+  .spin {
+    transform-origin: 300px 300px;
+    animation: spin 70s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .chips li {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background: color-mix(in oklab, var(--surface-raised) 92%, transparent);
+    box-shadow: 0 10px 24px -10px rgb(0 0 0 / 0.7);
+    color: var(--ink);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .chips li:nth-child(1) {
+    left: 0;
+    top: 30%;
+  }
+
+  .chips li:nth-child(2) {
+    left: -1%;
+    top: 68%;
+  }
+
+  .chips li:nth-child(3) {
+    right: 0;
+    top: 18%;
+  }
+
+  .chips li:nth-child(4) {
+    right: -1%;
+    top: 76%;
+  }
+
+  .chips li:nth-child(5) {
+    right: -2%;
+    top: 47%;
   }
 
   @media (width >= 40rem) {
-    .hero-portrait {
-      width: 20rem;
-    }
-
-    .hero-laptop {
-      display: block;
+    .hero-visual {
+      width: 31rem;
     }
   }
 
   @media (width >= 64rem) {
     .hero {
-      grid-template-columns: minmax(0, 1fr) 17.5rem;
-      min-height: 41rem;
-      gap: 0;
-      justify-items: stretch;
-      align-items: start;
-    }
-
-    .hero::before {
-      background: radial-gradient(
-        ellipse 34rem 22rem at 66% 82%,
-        color-mix(in oklab, var(--glow) 24%, transparent),
-        transparent 72%
-      );
+      grid-template-columns: minmax(0, 1fr) minmax(0, 29rem);
+      align-items: end;
+      min-height: min(40rem, calc(100dvh - 4.5rem));
     }
 
     .hero-text {
-      grid-column: 1;
-      grid-row: 1;
-      max-width: 25rem;
-      padding-top: 1rem;
+      align-self: center;
+      justify-self: start;
+      padding-block: 4rem;
     }
 
-    .hero-side {
-      grid-column: 2;
-      grid-row: 1;
+    .greeting {
+      justify-content: flex-start;
     }
 
-    .hero-portrait {
-      position: absolute;
-      z-index: -1;
-      bottom: 1.5rem;
-      left: 46.5%;
-      width: 25rem;
-      margin: 0;
-      translate: -50% 0;
+    .hero-visual {
+      order: 0;
+      width: 100%;
+      padding-top: 2.5rem;
     }
 
-    .hero-portrait :global(img) {
-      mask-image: linear-gradient(#000 55%, transparent 94%);
+    .portrait {
+      width: 82%;
+      mask-image: none;
     }
 
-    .hero-laptop {
-      position: absolute;
-      right: -0.75rem;
-      bottom: -6rem;
-      max-width: 30rem;
+    .rings {
+      width: 124%;
+      top: 53%;
+    }
+
+    .chips li {
+      font-size: 0.9375rem;
+      padding: 0.625rem 0.875rem;
+    }
+
+    .chips li:nth-child(1) {
+      left: -9%;
+    }
+
+    .chips li:nth-child(2) {
+      left: -13%;
+    }
+
+    .chips li:nth-child(3) {
+      right: -2%;
+    }
+
+    .chips li:nth-child(4) {
+      right: -3%;
+    }
+
+    .chips li:nth-child(5) {
+      right: -7%;
     }
   }
 
   @media (width >= 80rem) {
     .hero {
-      min-height: 43rem;
-      grid-template-columns: minmax(0, 1fr) 20rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
+      min-height: min(44rem, calc(100dvh - 4.5rem));
     }
 
-    .hero-portrait {
-      left: 45.5%;
-      width: 32rem;
+    .portrait {
+      width: 84%;
     }
+  }
 
-    .hero-laptop {
-      right: -1.5rem;
-      bottom: -8.5rem;
-      max-width: 37rem;
+  /* Al bajar, el texto se adelanta y el retrato se queda atrás con el anillo */
+  @keyframes hero-text-out {
+    to {
+      opacity: 0;
+      translate: 0 -3rem;
+    }
+  }
+
+  @keyframes hero-portrait-out {
+    to {
+      opacity: 0.25;
+      scale: 0.94;
+      translate: 0 4rem;
+    }
+  }
+
+  @keyframes hero-rings-out {
+    to {
+      opacity: 0;
+      scale: 1.14;
+    }
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .hero-band {
+        view-timeline: --hero block;
+      }
+
+      .hero-text,
+      .portrait,
+      .rings,
+      .chips li {
+        --timeline: --hero;
+        animation: var(--out) 1ms linear forwards;
+        animation-timeline: var(--timeline);
+        animation-range: exit 15% exit 85%;
+      }
+
+      /* Las etiquetas una a una: animar su lista cambiaría su referencia de posición */
+      .hero-text,
+      .chips li {
+        --out: hero-text-out;
+      }
+
+      .portrait {
+        --out: hero-portrait-out;
+      }
+
+      .rings {
+        --out: hero-rings-out;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spin {
+      animation: none;
     }
   }
 </style>

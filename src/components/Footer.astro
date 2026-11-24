@@ -1,39 +1,58 @@
 ---
 import { Icon } from "astro-icon/components";
+import IconLink from "./common/IconLink.astro";
 import { navigation } from "../data/navigation";
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
-  <div class="wrap flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-    <p class="text-sm text-muted max-xl:order-last">
-      Copyright © {year} Andrés Felipe Mejía Restrepo.
-    </p>
-    <nav aria-label="Pie de página">
-      <ul class="-mx-3 flex flex-wrap text-sm font-medium">
-        {
-          navigation.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class="inline-flex min-h-11 items-center px-3 transition-colors hover:text-glow"
-              >
-                {item.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-    <a
-      href="#profile"
-      class="inline-flex min-h-11 items-center gap-3 self-start text-sm font-medium transition-colors hover:text-glow xl:self-auto"
-    >
-      <span class="grid size-9 place-items-center rounded-full border border-glow/60 text-glow">
-        <Icon name="ph:arrow-up" class="size-4" aria-hidden="true" />
-      </span>
-      Volver arriba
-    </a>
+<footer class="bg-canvas pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-14">
+  <div class="wrap">
+    <div class="grid gap-10 md:grid-cols-[1.2fr_1.4fr_auto]">
+      <div>
+        <p class="inline-flex items-center gap-2 text-lg font-bold text-ink">
+          <Icon name="ph:code-bold" class="size-6 text-accent" aria-hidden="true" />
+          <span><span class="text-accent">Andrés</span> Mejía</span>
+        </p>
+        <p class="mt-3 max-w-[34ch] text-sm leading-relaxed">
+          Desarrollador full-stack en Manizales, Colombia.
+        </p>
+      </div>
+      <nav aria-label="Pie de página">
+        <ul class="grid grid-cols-2 gap-x-6 text-sm font-medium">
+          {
+            navigation.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="inline-flex min-h-11 items-center transition-colors hover:text-accent"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="flex gap-3">
+        <IconLink href="https://github.com/mejia907" icon="fa6-brands:github" label="Perfil de GitHub" />
+        <IconLink
+          href="https://www.linkedin.com/in/andresfelipemejiar"
+          icon="fa6-brands:linkedin"
+          label="Perfil de LinkedIn"
+        />
+        <IconLink href="mailto:mejia9070@gmail.com" icon="ph:envelope-simple-bold" label="Enviar un correo" />
+      </div>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5 text-sm">
+      <p class="text-muted">Copyright © {year} Andrés Felipe Mejía Restrepo.</p>
+      <a
+        href="#profile"
+        class="inline-flex min-h-11 items-center gap-2 font-medium transition-colors hover:text-accent"
+      >
+        Volver arriba
+        <Icon name="ph:arrow-up" class="size-4 text-accent" aria-hidden="true" />
+      </a>
+    </div>
   </div>
 </footer>

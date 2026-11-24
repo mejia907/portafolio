@@ -1,17 +1,26 @@
 ---
-import { Icon } from "astro-icon/components";
-
 interface Props {
-  icon: string;
   title: string;
 }
 
-const { icon, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<div class="flex items-center gap-4">
-  <span class="grid size-12 shrink-0 place-items-center rounded-xl bg-glow/12 text-glow">
-    <Icon name={icon} class="size-6" aria-hidden="true" />
-  </span>
-  <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{title}</h2>
-</div>
+<h2
+  data-reveal="both"
+  class="heading text-[clamp(1.75rem,1.4rem+1.6vw,2.5rem)] font-bold leading-[1.12] tracking-[-0.02em]"
+>
+  {title}
+</h2>
+
+<style>
+  .heading::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+</style>

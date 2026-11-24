@@ -4,13 +4,13 @@ import { Icon } from "astro-icon/components";
 const { icon, iconPlatform, namePlatform, title, date, time } = Astro.props;
 ---
 
-<li class="panel flex flex-col rounded-xl p-5">
+<li data-reveal="both" class="panel flex flex-col rounded-xl p-5">
   <Icon name={icon} class="size-9 shrink-0 text-ink" aria-hidden="true" />
   <h3 class="mt-4 text-base font-semibold leading-snug">{title}</h3>
   <div class="mt-auto pt-3 text-sm">
     <p class="text-muted">{date}</p>
     <p class="mt-1 inline-flex items-center gap-1.5">
-      <Icon name={iconPlatform} class="size-4 text-glow" aria-hidden="true" />
+      <Icon name={iconPlatform} class="size-4 text-accent" aria-hidden="true" />
       {time ? `${namePlatform} · ${time}` : namePlatform}
     </p>
   </div>

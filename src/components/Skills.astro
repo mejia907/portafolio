@@ -3,41 +3,155 @@ import { Icon } from "astro-icon/components";
 import SectionHeading from "./common/SectionHeading.astro";
 
 // Los logos oscuros usan una versión monocroma para verse sobre el fondo negro
-const skills = [
+const skills: { name: string; group: string; icon: string; accent?: boolean }[] = [
+  { name: "React", group: "Frontend", icon: "devicon:react" },
+  { name: "React Native", group: "Frontend", icon: "devicon:reactnative" },
+  { name: "Next.js", group: "Frontend", icon: "simple-icons:nextdotjs" },
+  { name: "Astro", group: "Frontend", icon: "simple-icons:astro" },
+  { name: "Tailwind", group: "Frontend", icon: "devicon:tailwindcss" },
+  { name: "HTML", group: "Frontend", icon: "devicon:html5" },
+  { name: "CSS", group: "Frontend", icon: "devicon:css3" },
+  { name: "jQuery", group: "Frontend", icon: "simple-icons:jquery" },
   { name: "PHP", group: "Backend", icon: "devicon:php" },
   { name: "Laravel", group: "Backend", icon: "devicon:laravel" },
   { name: "Node.js", group: "Backend", icon: "devicon:nodejs" },
   { name: "NestJS", group: "Backend", icon: "devicon:nestjs" },
-  { name: "JavaScript", group: "Lenguaje", icon: "devicon:javascript" },
-  { name: "TypeScript", group: "Lenguaje", icon: "devicon:typescript" },
-  { name: "React", group: "Frontend", icon: "devicon:react" },
-  { name: "Next.js", group: "Frontend", icon: "simple-icons:nextdotjs" },
-  { name: "Astro", group: "Frontend", icon: "simple-icons:astro" },
-  { name: "Tailwind", group: "Frontend", icon: "devicon:tailwindcss" },
-  { name: "jQuery", group: "Frontend", icon: "simple-icons:jquery" },
-  { name: "HTML", group: "Frontend", icon: "devicon:html5" },
-  { name: "CSS", group: "Frontend", icon: "devicon:css3" },
-  { name: "MySQL", group: "Base de datos", icon: "simple-icons:mysql" },
-  { name: "MariaDB", group: "Base de datos", icon: "simple-icons:mariadb" },
-  { name: "PostgreSQL", group: "Base de datos", icon: "devicon:postgresql" },
-  { name: "MongoDB", group: "Base de datos", icon: "devicon:mongodb" },
-  { name: "Prisma", group: "Base de datos", icon: "devicon:prisma" },
+  { name: "JavaScript", group: "Lenguajes", icon: "devicon:javascript" },
+  { name: "TypeScript", group: "Lenguajes", icon: "devicon:typescript" },
+  { name: "MySQL", group: "Bases de datos", icon: "simple-icons:mysql" },
+  { name: "MariaDB", group: "Bases de datos", icon: "simple-icons:mariadb" },
+  { name: "PostgreSQL", group: "Bases de datos", icon: "devicon:postgresql" },
+  { name: "MongoDB", group: "Bases de datos", icon: "devicon:mongodb" },
+  { name: "Prisma", group: "Bases de datos", icon: "devicon:prisma" },
+  { name: "Supabase", group: "Bases de datos", icon: "devicon:supabase" },
+  { name: "Claude", group: "Inteligencia artificial", icon: "simple-icons:claude", accent: true },
 ];
+
+const groups = [...new Set(skills.map((skill) => skill.group))].map((name) => {
+  const count = skills.filter((skill) => skill.group === name).length;
+  return { name, count, share: (count / skills.length) * 100 };
+});
 ---
 
-<section id="skills" class="pt-20 lg:pt-32 xl:pt-36">
-  <div class="wrap">
-    <SectionHeading icon="ph:code" title="Habilidades" />
-    <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+<section id="skills" class="section">
+  <div class="wrap grid gap-8 xl:grid-cols-[18rem_1fr] xl:gap-12">
+    <div>
+      <SectionHeading title="Habilidades" />
+      <div class="groups mt-6 grid gap-1 sm:max-xl:grid-cols-2 sm:max-xl:gap-x-8 lg:max-xl:grid-cols-5 lg:max-xl:gap-x-6" hidden>
+        {
+          groups.map((group) => (
+            <button type="button" data-group={group.name} aria-pressed="false" class="group-filter">
+              <span class="flex justify-between gap-4">
+                <span>{group.name}</span>
+                <span class="tabular-nums text-muted">
+                  {group.count}
+                  <span class="sr-only"> tecnologías</span>
+                </span>
+              </span>
+              <span class="track" aria-hidden="true">
+                <span data-grow style={`width: ${group.share}%`} />
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <ul data-stagger="7" class="grid grid-cols-3 gap-2 md:grid-cols-7 lg:gap-3">
       {
         skills.map((skill) => (
-          <li class="panel rounded-xl p-4 sm:p-5">
-            <Icon name={skill.icon} class="size-9 text-ink" aria-hidden="true" />
-            <p class="mt-4 font-semibold leading-snug text-ink">{skill.name}</p>
-            <p class="mt-0.5 text-sm text-muted">{skill.group}</p>
+          <li
+            data-skill={skill.group}
+            data-reveal="both"
+            class="panel flex flex-col items-center justify-center gap-2.5 rounded-xl px-1 py-5 text-center"
+          >
+            <Icon
+              name={skill.icon}
+              class:list={["size-9", skill.accent ? "text-accent" : "text-ink"]}
+              aria-hidden="true"
+            />
+            <span class="text-sm font-medium text-ink">{skill.name}</span>
           </li>
         ))
       }
     </ul>
   </div>
 </section>
+
+<style>
+  .group-filter {
+    min-height: 3.5rem;
+    padding-block: 0.625rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--copy);
+    transition: color 200ms ease;
+  }
+
+  .group-filter:hover,
+  .group-filter[aria-pressed="true"] {
+    color: var(--ink);
+  }
+
+  .track {
+    display: block;
+    height: 3px;
+    margin-top: 0.5rem;
+    border-radius: 2px;
+    background: var(--surface-raised);
+  }
+
+  .track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+    opacity: 0.75;
+    transition: opacity 200ms ease;
+  }
+
+  .group-filter:hover .track span,
+  .group-filter[aria-pressed="true"] .track span {
+    opacity: 1;
+  }
+
+  /* El atenuado va en --dim para convivir con la animación de entrada */
+  [data-skill] {
+    opacity: var(--dim);
+    transition:
+      --dim 250ms ease,
+      border-color 250ms ease;
+  }
+
+  [data-skill][data-state="on"] {
+    border-color: color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+
+  [data-skill][data-state="off"] {
+    --dim: 0.28;
+  }
+</style>
+
+<script>
+  // Cada grupo resalta sus tecnologías; al pulsarlo otra vez se muestran todas
+  const container = document.querySelector<HTMLElement>(".groups");
+  const filters = document.querySelectorAll<HTMLButtonElement>("[data-group]");
+  const tiles = document.querySelectorAll<HTMLElement>("[data-skill]");
+
+  if (container) container.hidden = false;
+
+  for (const filter of filters) {
+    filter.addEventListener("click", () => {
+      const isActive = filter.getAttribute("aria-pressed") === "true";
+      const selected = isActive ? null : filter.dataset.group;
+
+      for (const other of filters) {
+        other.setAttribute("aria-pressed", String(other.dataset.group === selected));
+      }
+      for (const tile of tiles) {
+        if (!selected) delete tile.dataset.state;
+        else tile.dataset.state = tile.dataset.skill === selected ? "on" : "off";
+      }
+    });
+  }
+</script>

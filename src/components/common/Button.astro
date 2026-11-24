@@ -8,15 +8,16 @@ interface Props extends HTMLAttributes<"a"> {
 const { variant = "outline", class: className, ...rest } = Astro.props;
 
 const variants = {
-  solid:
-    "border-transparent bg-glow text-on-glow shadow-lg shadow-glow/25 hover:bg-glow-strong hover:shadow-glow/40",
-  outline: "border-glow/50 bg-canvas/60 text-ink hover:border-glow hover:bg-glow/12",
+  solid: "bg-accent text-on-accent hover:bg-accent-strong",
+  // El anillo interior se suaviza en las curvas; un borde de 1px se ve dentado a escalas como 125 %
+  outline:
+    "text-ink forced-colors:border inset-ring-[1.5px] inset-ring-accent hover:bg-accent/12 hover:inset-ring-accent-strong",
 };
 ---
 
 <a
   class:list={[
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border px-5 py-2 text-sm font-semibold transition-[background-color,border-color,box-shadow] duration-200 active:opacity-80",
+    "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-2 text-sm font-semibold transition-[background-color,box-shadow,color] duration-200 active:opacity-80",
     variants[variant],
     className,
   ]}

@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/onest": "5.3.1",
+    "@fontsource-variable/archivo": "5.3.0",
     "@iconify-json/cbi": "1.2.73",
     "@iconify-json/devicon": "1.2.84",
     "@iconify-json/devicon-plain": "1.2.75",

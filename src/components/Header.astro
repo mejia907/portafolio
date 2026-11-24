@@ -4,73 +4,25 @@ import Button from "./common/Button.astro";
 import { navigation } from "../data/navigation";
 ---
 
-<header
-  class="sticky top-0 z-50 pt-3 before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-full before:bg-linear-to-b before:from-canvas before:to-transparent sm:pt-4"
->
-  <div class="wrap flex items-center gap-3 lg:gap-6">
-    <div
-      class="panel-solid flex h-14 flex-1 items-center justify-between gap-4 rounded-xl pl-4 pr-2 lg:pr-3"
+<header class="sticky top-0 z-50 border-b border-line bg-canvas">
+  <div class="wrap flex h-18 items-center justify-between gap-4">
+    <a
+      href="#profile"
+      class="inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-lg font-bold text-ink"
     >
-      <a
-        href="#profile"
-        class="inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-lg font-semibold text-ink"
-      >
-        <Icon name="ph:code-bold" class="size-6 text-glow" aria-hidden="true" />
-        <span><span class="text-glow">Andrés</span> Mejía</span>
-      </a>
+      <Icon name="ph:code-bold" class="size-7 text-accent" aria-hidden="true" />
+      <span><span class="text-accent">Andrés</span> Mejía</span>
+    </a>
 
-      <nav class="hidden lg:block" aria-label="Navegación principal">
-        <ul class="flex items-center gap-1">
-          {
-            navigation.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  data-nav-link
-                  class="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium transition-colors duration-200 hover:text-ink aria-[current]:bg-glow/15 aria-[current]:text-glow xl:px-4"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-
-      <button
-        id="toggleMenu"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        aria-controls="menu"
-        class="group inline-flex size-11 items-center justify-center rounded-lg text-ink transition-colors hover:bg-glow/15 lg:hidden"
-        type="button"
-      >
-        <Icon name="ph:list" class="size-6 group-aria-expanded:hidden" aria-hidden="true" />
-        <Icon name="ph:x" class="hidden size-6 group-aria-expanded:block" aria-hidden="true" />
-      </button>
-    </div>
-
-    <div class="hidden rounded-xl bg-canvas sm:block">
-      <Button href="#contact" class="h-14">
-        Hablemos
-        <Icon name="ph:paper-plane-tilt" class="size-5" aria-hidden="true" />
-      </Button>
-    </div>
-  </div>
-
-  {/* Menú móvil */}
-  <nav id="menu" hidden aria-label="Menú móvil" class="absolute inset-x-0 top-full lg:hidden">
-    <div class="wrap pt-2">
-      <ul
-        class="panel-solid max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain rounded-xl px-4 py-2"
-      >
+    <nav class="hidden lg:block" aria-label="Navegación principal">
+      <ul class="flex items-center">
         {
           navigation.map((item) => (
-            <li class="border-b border-line/60 last:border-b-0">
+            <li>
               <a
                 href={item.href}
                 data-nav-link
-                class="flex min-h-12 items-center text-base font-medium transition-colors hover:text-ink aria-[current]:text-glow"
+                class="relative inline-flex min-h-11 items-center px-2.5 text-sm font-medium transition-colors duration-200 after:absolute after:inset-x-2.5 after:bottom-1.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-accent after:transition-transform after:duration-300 hover:text-ink aria-[current]:text-accent aria-[current]:after:scale-x-100 xl:px-4 xl:after:inset-x-4"
               >
                 {item.name}
               </a>
@@ -78,7 +30,48 @@ import { navigation } from "../data/navigation";
           ))
         }
       </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <div class="hidden sm:block">
+        <Button href="#contact" class="min-h-11!">Hablemos</Button>
+      </div>
+      <button
+        id="toggleMenu"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu"
+        class="group inline-flex size-11 items-center justify-center rounded-lg text-ink transition-colors hover:bg-surface-raised lg:hidden"
+        type="button"
+      >
+        <Icon name="ph:list" class="size-7 group-aria-expanded:hidden" aria-hidden="true" />
+        <Icon name="ph:x" class="hidden size-7 group-aria-expanded:block" aria-hidden="true" />
+      </button>
     </div>
+  </div>
+
+  {/* Menú móvil */}
+  <nav
+    id="menu"
+    hidden
+    aria-label="Menú móvil"
+    class="absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-y border-line bg-surface shadow-xl shadow-black/50 lg:hidden"
+  >
+    <ul class="wrap py-2">
+      {
+        navigation.map((item) => (
+          <li class="border-b border-line last:border-b-0">
+            <a
+              href={item.href}
+              data-nav-link
+              class="flex min-h-12 items-center text-base font-medium transition-colors hover:text-ink aria-[current]:text-accent"
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </nav>
 </header>
 

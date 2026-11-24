@@ -1,0 +1,38 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import ProjectLinks from "./ProjectLinks.astro";
+
+interface Props {
+  image: ImageMetadata;
+  title: string;
+  description: string;
+  url?: string;
+  github?: string;
+  offline?: boolean;
+}
+
+const { image, title, description, ...links } = Astro.props;
+---
+
+<li data-reveal="both" class="group grid gap-x-8 gap-y-4 border-t border-line py-6 sm:grid-cols-[13rem_1fr] lg:grid-cols-[13rem_1fr_auto] lg:items-center">
+  <div class="aspect-3/2 overflow-hidden rounded-lg border border-line">
+    <Image
+      src={image}
+      alt={`Captura de ${title}`}
+      widths={[240, 480, 720].filter((width) => width <= image.width)}
+      sizes="(min-width: 640px) 208px, 100vw"
+      class="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-104"
+    />
+  </div>
+  <div class="min-w-0">
+    <h4 class="text-lg font-semibold leading-snug">{title}</h4>
+    <p class="mt-1.5 max-w-prose text-base leading-relaxed">{description}</p>
+    <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Tecnologías">
+      <slot />
+    </ul>
+  </div>
+  <div class="flex flex-wrap gap-x-6 sm:col-start-2 lg:col-start-3 lg:flex-col lg:items-start">
+    <ProjectLinks title={title} {...links} />
+  </div>
+</li>

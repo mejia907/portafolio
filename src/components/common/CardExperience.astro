@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+const { image, title, description, position, dateIn, dateOut, url } = Astro.props;
+---
+
+<li data-reveal="in" class="panel flex flex-col rounded-xl p-6">
+  <p class="text-base leading-relaxed" set:html={description} />
+  <div class="mt-auto flex items-center gap-4 pt-6">
+    <span class="grid size-14 shrink-0 place-items-center overflow-hidden rounded-full bg-white p-2.5">
+      <Image src={image} alt="" class="max-h-full w-auto object-contain" />
+    </span>
+    <div class="min-w-0">
+      <h3 class="font-semibold leading-snug">
+        {
+          url ? (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group relative inline-block decoration-accent decoration-2 underline-offset-4 after:absolute after:-inset-x-1 after:-inset-y-3 hover:underline"
+            >
+              {title}
+              <Icon
+                name="uim:arrow-up-right"
+                class="ml-0.5 inline size-5 align-[-0.2em] text-accent"
+                aria-hidden="true"
+              />
+            </a>
+          ) : (
+            title
+          )
+        }
+      </h3>
+      <p class="text-sm">{position}</p>
+      <p class="text-sm tabular-nums text-accent">{dateIn} – {dateOut}</p>
+    </div>
+  </div>
+</li>

@@ -3,10 +3,10 @@ import SectionHeading from "./common/SectionHeading.astro";
 import CardCertificate from "./common/CardCertificate.astro";
 ---
 
-<section id="certificates" class="pt-20 lg:pt-28">
+<section id="certificates" class="section pt-0!">
   <div class="wrap">
-    <SectionHeading icon="ph:certificate" title="Certificados" />
-    <ul class="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+    <SectionHeading title="Certificados" />
+    <ul data-stagger="4" class="mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
       <CardCertificate
         icon="devicon:laravel"
         iconPlatform="simple-icons:platzi"

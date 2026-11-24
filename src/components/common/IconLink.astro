@@ -16,7 +16,7 @@ const isExternal = href.startsWith("http");
   target={isExternal ? "_blank" : undefined}
   rel={isExternal ? "noopener noreferrer" : undefined}
   aria-label={label}
-  class="panel inline-flex size-12 items-center justify-center rounded-xl text-ink transition-colors duration-200 hover:border-glow hover:text-glow active:opacity-80"
+  class="panel inline-flex size-12 items-center justify-center rounded-lg text-ink transition-colors duration-200 hover:border-accent hover:text-accent active:opacity-80"
 >
   <Icon name={icon} class="size-5" aria-hidden="true" />
 </a>

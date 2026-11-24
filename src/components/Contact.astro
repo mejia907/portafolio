@@ -1,41 +1,118 @@
 ---
 import { Icon } from "astro-icon/components";
-import Button from "./common/Button.astro";
+import SectionHeading from "./common/SectionHeading.astro";
+
+const email = "mejia9070@gmail.com";
+const projectTypes = ["Página web", "Aplicación web", "Backend o API", "Base de datos", "Otro"];
+
+const channels = [
+  { icon: "ph:envelope-simple", label: "Correo", value: email, href: `mailto:${email}` },
+  {
+    icon: "fa6-brands:linkedin",
+    label: "LinkedIn",
+    value: "andresfelipemejiar",
+    href: "https://www.linkedin.com/in/andresfelipemejiar",
+  },
+  {
+    icon: "fa6-brands:github",
+    label: "GitHub",
+    value: "mejia907",
+    href: "https://github.com/mejia907",
+  },
+];
+
+const fieldClass =
+  "w-full rounded-lg border border-line-strong bg-canvas px-4 py-3 text-base text-ink transition-colors placeholder:text-muted hover:border-copy focus-visible:border-accent focus-visible:outline-accent";
 ---
 
-<section id="contact" class="pt-20 lg:pt-28">
-  <div class="wrap">
-    <div
-      class="panel flex flex-col gap-8 rounded-2xl px-5 py-10 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10"
-    >
-      <div class="min-w-0">
-        <h2 class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-          Hablemos de <span class="text-glow">tu próximo proyecto</span>
-        </h2>
-        <a
-          href="mailto:mejia9070@gmail.com"
-          class="mt-3 inline-flex min-h-11 items-center text-lg wrap-anywhere underline decoration-glow/50 decoration-2 underline-offset-8 transition-colors hover:text-ink hover:decoration-glow"
-        >mejia9070@gmail.com</a>
-      </div>
-
-      <div class="flex flex-wrap gap-3 lg:shrink-0">
-        <Button variant="solid" href="mailto:mejia9070@gmail.com">
-          Escríbeme
-          <Icon name="ph:paper-plane-tilt" class="size-5" aria-hidden="true" />
-        </Button>
-        <Button
-          href="https://www.linkedin.com/in/andresfelipemejiar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Icon name="fa6-brands:linkedin" class="size-5" aria-hidden="true" />
-          LinkedIn
-        </Button>
-        <Button href="https://github.com/mejia907" target="_blank" rel="noopener noreferrer">
-          <Icon name="fa6-brands:github" class="size-5" aria-hidden="true" />
-          GitHub
-        </Button>
-      </div>
+<section id="contact" class="band">
+  <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.35fr] lg:gap-12 xl:grid-cols-[1fr_1.4fr_0.95fr]">
+    <div>
+      <SectionHeading title="Hablemos de tu próximo proyecto" />
+      <p data-reveal="in" class="mt-5 max-w-[40ch] text-base leading-relaxed">
+        Cuéntame qué necesitas. Al enviar se abrirá tu aplicación de correo con el mensaje listo.
+      </p>
     </div>
+
+    <form
+      id="contactForm"
+      data-reveal="in"
+      action={`mailto:${email}`}
+      method="post"
+      enctype="text/plain"
+      class="grid gap-4 sm:grid-cols-2"
+    >
+      <div>
+        <label for="name" class="mb-1.5 block text-sm font-medium text-ink">Tu nombre</label>
+        <input id="name" name="Nombre" type="text" autocomplete="name" required class={fieldClass} />
+      </div>
+      <div>
+        <label for="type" class="mb-1.5 block text-sm font-medium text-ink">Tipo de proyecto</label>
+        <div class="relative">
+          <select id="type" name="Tipo" class:list={[fieldClass, "appearance-none pr-11"]}>
+            {projectTypes.map((type) => <option>{type}</option>)}
+          </select>
+          <Icon
+            name="ph:caret-down"
+            class="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-accent"
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="mb-1.5 block text-sm font-medium text-ink">Mensaje</label>
+        <textarea id="message" name="Mensaje" rows="5" required class:list={[fieldClass, "resize-y"]}
+        ></textarea>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+        <button
+          type="submit"
+          class="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-on-accent transition-colors duration-200 hover:bg-accent-strong active:opacity-80"
+        >
+          Enviar mensaje
+          <Icon name="ph:arrow-right" class="size-5" aria-hidden="true" />
+        </button>
+        <p id="formStatus" role="status" class="text-sm text-copy"></p>
+      </div>
+    </form>
+
+    <ul data-reveal="in" class="panel grid content-center gap-2 rounded-xl p-4 max-xl:lg:col-span-2 max-xl:lg:grid-cols-3">
+      {
+        channels.map((channel) => (
+          <li>
+            <a
+              href={channel.href}
+              target={channel.href.startsWith("http") ? "_blank" : undefined}
+              rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="flex min-h-14 items-center gap-4 rounded-lg px-2 transition-colors hover:bg-surface-raised"
+            >
+              <Icon name={channel.icon} class="size-6 shrink-0 text-accent" aria-hidden="true" />
+              <span class="min-w-0">
+                <span class="block text-sm text-muted">{channel.label}</span>
+                <span class="block font-medium wrap-anywhere text-ink">{channel.value}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>
+
+<script>
+  // Compone el correo en el cliente del visitante: no se envía nada a ningún servidor
+  const form = document.querySelector<HTMLFormElement>("#contactForm");
+  const status = document.querySelector("#formStatus");
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get("Nombre")).trim();
+    const subject = `${data.get("Tipo")} - ${name}`;
+    const body = `${String(data.get("Mensaje")).trim()}\n\n${name}`;
+    window.location.href = `${form.getAttribute("action")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (status) {
+      status.textContent = "Si no se abrió tu correo, escríbeme a mejia9070@gmail.com.";
+    }
+  });
+</script>
