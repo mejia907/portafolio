@@ -1,29 +1,19 @@
 ---
-const itemsMenu = [
-  { name: "Sobre mí", href: "#about" },
-  { name: "Proyectos", href: "#projects" },
-  { name: "Experiencia", href: "#experience" },
-  { name: "Certificados", href: "#certificates" },
-  { name: "Contacto", href: "#contact" },
-];
+import { navigation } from "../data/navigation";
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-200/80 bg-white/70 py-12 transition
-dark:border-slate-700 dark:bg-slate-900/70">
-  <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-
-    {/* NAV */}
-    <nav class="mb-8">
-      <ul class="flex flex-col gap-3 text-center text-sm font-medium text-slate-600 sm:flex-row sm:gap-6 sm:text-base
-      dark:text-slate-400">
+<footer class="border-t border-line bg-surface pb-[max(2rem,env(safe-area-inset-bottom))] pt-8">
+  <div class="wrap flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+    <nav aria-label="Pie de página">
+      <ul class="-mx-3 flex flex-wrap text-sm font-medium">
         {
-          itemsMenu.map((item) => (
+          navigation.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="transition
-                hover:text-slate-900 hover:underline hover:underline-offset-8 hover:decoration-2 hover:decoration-slate-400
-                dark:hover:text-white dark:hover:decoration-slate-500"
+                class="inline-flex min-h-11 items-center px-3 underline-offset-8 transition-colors hover:text-ink hover:underline"
               >
                 {item.name}
               </a>
@@ -32,11 +22,6 @@ dark:border-slate-700 dark:bg-slate-900/70">
         }
       </ul>
     </nav>
-
-    {/* COPYRIGHT */}
-    <p class="text-xs text-slate-500 sm:text-sm dark:text-slate-400">
-      Copyright © 2025 Andrés Felipe Mejía Restrepo.
-    </p>
-
+    <p class="text-sm text-muted">Copyright © {year} Andrés Felipe Mejía Restrepo.</p>
   </div>
 </footer>

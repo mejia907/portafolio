@@ -1,76 +1,96 @@
 ---
-import '@fontsource/poppins';
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
+import '@fontsource/poppins/latin-700.css';
+import poppins400 from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
+import poppins700 from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
+import '../styles/global.css';
 ---
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="theme-color" content="#f8fafc" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preload" href={poppins400} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={poppins700} as="font" type="font/woff2" crossorigin />
 		<meta name="description" content="Desarrollador full-stack experto en PHP, NodeJS y React. Construyo aplicaciones web escalables y eficientes desde el front-end hasta el back-end.">
 		<title>Andrés Felipe Mejía | Desarrollador FullStack</title>
 		<script is:inline>
 			(() => {
-				const themeKey = 'theme-preference';
+				let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 				try {
-					const storedTheme = localStorage.getItem(themeKey);
-					const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-					const shouldUseDark = storedTheme ? storedTheme === 'dark' : prefersDark;
-					document.documentElement.classList.toggle('dark', shouldUseDark);
-				} catch {
-					document.documentElement.classList.toggle(
-						'dark',
-						window.matchMedia('(prefers-color-scheme: dark)').matches
-					);
-				}
+					const storedTheme = localStorage.getItem('theme-preference');
+					if (storedTheme) isDark = storedTheme === 'dark';
+				} catch {}
+				document.documentElement.classList.toggle('dark', isDark);
+				document
+					.querySelector('meta[name="theme-color"]')
+					.setAttribute('content', isDark ? '#020617' : '#f8fafc');
+			})();
+		</script>
+		<script is:inline>
+			// Animación de entrada: en cada carga que empieza en la parte superior de la página
+			(() => {
+				const root = document.documentElement;
+				const scrollKey = 'last-scroll';
+				let lastScroll = 0;
+				try {
+					lastScroll = Number(sessionStorage.getItem(scrollKey));
+					addEventListener('pagehide', () => sessionStorage.setItem(scrollKey, String(scrollY)));
+				} catch {}
+
+				// Con un ancla o una recarga a mitad de página, el inicio no está a la vista
+				const navigation = performance.getEntriesByType('navigation')[0];
+				const restoresScroll = navigation && navigation.type !== 'navigate' && lastScroll > 200;
+				const goesToSection = location.hash && location.hash !== '#profile';
+				if (restoresScroll || goesToSection) return;
+
+				root.classList.add('intro');
+				const skipEvents = ['wheel', 'touchmove', 'pointerdown', 'keydown'];
+				const skipKeys = ['Tab', 'Escape', 'Enter', ' ', 'ArrowDown', 'PageDown', 'End'];
+				const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+				const finish = () => {
+					root.classList.remove('intro', 'intro-play');
+					skipEvents.forEach((name) => removeEventListener(name, skip));
+				};
+
+				// Una tecla que sigue pulsada al recargar (F5, Ctrl+R, Enter) no cuenta
+				const skip = (event) => {
+					if (event.type === 'keydown' && (event.repeat || !skipKeys.includes(event.key))) return;
+					finish();
+				};
+				skipEvents.forEach((name) => addEventListener(name, skip, { passive: true }));
+
+				document.addEventListener('DOMContentLoaded', async () => {
+					const photo = document.querySelector('#profile img');
+					// Espera la fuente y la foto, pero nunca más de 1,2 s
+					await Promise.race([
+						Promise.allSettled([
+							document.fonts.load('400 1em Poppins'),
+							document.fonts.load('700 1em Poppins'),
+							photo?.decode(),
+						]),
+						wait(1200),
+					]);
+					root.classList.add('intro-play');
+					// Al terminar se limpia todo, aunque la pestaña esté en segundo plano
+					await wait(1400);
+					finish();
+				});
 			})();
 		</script>
 	</head>
-	<body class="antialiased transition-colors duration-300">
+	<body class="font-sans antialiased">
+		<a
+			href="#main"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-full focus:bg-action focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-on-action"
+		>
+			Saltar al contenido
+		</a>
 		<slot />
 	</body>
 </html>
-
-<style is:global>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		min-height: 100%;
-		font-family: 'Poppins', sans-serif;
-		scroll-behavior: smooth;
-		color: #0f172a;
-	}
-
-	html {
-		color-scheme: light;
-	}
-
-	html.dark {
-		color-scheme: dark;
-	}
-
-	body {
-		background: linear-gradient(180deg, #f8fafc 0%, #ffffff 35%, #f8fafc 100%);
-		transition: background 240ms ease, color 240ms ease;
-	}
-
-	html.dark body {
-		background: linear-gradient(180deg, #020617 0%, #0f172a 35%, #020617 100%);
-		color: #e2e8f0;
-	}
-
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-
-	section[id] {
-		scroll-margin-top: 6rem;
-	}
-
-	a {
-		color: inherit;
-	}
-</style>

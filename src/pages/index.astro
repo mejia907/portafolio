@@ -12,11 +12,13 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
 	<Header />
-	<Profile />
-	<AboutMe />
-	<Projects />
-	<Experience />
-	<Certificate />
-	<Contact />
+	<main id="main" tabindex="-1" class="outline-hidden">
+		<Profile />
+		<AboutMe />
+		<Projects />
+		<Experience />
+		<Certificate />
+		<Contact />
+	</main>
 	<Footer />
 </Layout>

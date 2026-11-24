@@ -1,0 +1,219 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens semánticos: cambian solos con el tema, sin repetir dark: en cada clase */
+:root {
+	--canvas: var(--color-slate-50);
+	--surface: var(--color-white);
+	--surface-raised: var(--color-slate-100);
+	--line: var(--color-slate-200);
+	--line-strong: var(--color-slate-400);
+	--ink: var(--color-slate-900);
+	--copy: var(--color-slate-600);
+	--muted: var(--color-slate-500);
+	--action: var(--color-slate-900);
+	--action-hover: var(--color-slate-700);
+	--on-action: var(--color-white);
+}
+
+.dark {
+	--canvas: var(--color-slate-950);
+	--surface: var(--color-slate-900);
+	--surface-raised: var(--color-slate-800);
+	--line: var(--color-slate-800);
+	--line-strong: var(--color-slate-500);
+	--ink: var(--color-slate-100);
+	--copy: var(--color-slate-300);
+	--muted: var(--color-slate-400);
+	--action: var(--color-slate-100);
+	--action-hover: var(--color-slate-300);
+	--on-action: var(--color-slate-950);
+}
+
+@theme inline {
+	--font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+	--color-canvas: var(--canvas);
+	--color-surface: var(--surface);
+	--color-surface-raised: var(--surface-raised);
+	--color-line: var(--line);
+	--color-line-strong: var(--line-strong);
+	--color-ink: var(--ink);
+	--color-copy: var(--copy);
+	--color-muted: var(--muted);
+	--color-action: var(--action);
+	--color-action-hover: var(--action-hover);
+	--color-on-action: var(--on-action);
+}
+
+/* Contenedor de página: respeta el notch en horizontal */
+@utility wrap {
+	width: 100%;
+	max-width: 72rem;
+	margin-inline: auto;
+	padding-left: max(1rem, env(safe-area-inset-left));
+	padding-right: max(1rem, env(safe-area-inset-right));
+
+	@media (width >= 40rem) {
+		padding-left: max(1.5rem, env(safe-area-inset-left));
+		padding-right: max(1.5rem, env(safe-area-inset-right));
+	}
+
+	@media (width >= 64rem) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+@layer base {
+	html {
+		color-scheme: light;
+		scroll-padding-top: 4rem;
+		scrollbar-color: var(--line-strong) transparent;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	html.dark {
+		color-scheme: dark;
+	}
+
+	body {
+		min-height: 100dvh;
+		background: var(--canvas);
+		color: var(--copy);
+	}
+
+	h1,
+	h2,
+	h3 {
+		color: var(--ink);
+		text-wrap: balance;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	strong {
+		font-weight: 600;
+		color: var(--ink);
+	}
+
+	/* Tailwind 4 ya no pone cursor pointer en los botones */
+	button:not(:disabled) {
+		cursor: pointer;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--ink);
+		outline-offset: 3px;
+	}
+
+	::selection {
+		background: var(--action);
+		color: var(--on-action);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+}
+
+/*
+ * Animación de entrada. Solo existe mientras <html> tiene la clase intro
+ * (la pone y la quita el script de Layout.astro), así que sin JavaScript
+ * la página se ve completa desde el inicio.
+ */
+@keyframes intro-focus {
+	from {
+		opacity: 0;
+		filter: blur(var(--blur, 14px));
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+@keyframes intro-fade {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes intro-unveil {
+	to {
+		opacity: 0;
+	}
+}
+
+/* El menú entra junto con los textos, no como un paso aparte */
+@keyframes intro-header {
+	from {
+		opacity: 0;
+		translate: 0 -1rem;
+	}
+}
+
+.intro :is([data-intro], body > header),
+.intro body::after {
+	animation-fill-mode: both;
+	animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+	animation-play-state: paused;
+}
+
+.intro-play :is([data-intro], body > header),
+.intro-play body::after {
+	animation-play-state: running;
+}
+
+.intro [data-intro] {
+	animation-name: intro-focus;
+	animation-duration: 750ms;
+	animation-delay: var(--at, 0ms);
+}
+
+.intro body > header {
+	animation-name: intro-header;
+	animation-duration: 600ms;
+	animation-delay: 420ms;
+	backdrop-filter: none;
+}
+
+/*
+ * Un velo del tamaño de la pantalla descubre el resto de la página: animar
+ * la opacidad de secciones tan altas hacía perder fotogramas.
+ */
+.intro body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 40;
+	background: var(--canvas);
+	pointer-events: none;
+	animation-name: intro-unveil;
+	animation-duration: 600ms;
+	animation-delay: 560ms;
+}
+
+.intro #profile {
+	position: relative;
+	z-index: 41;
+}
+
+/* Sin desplazamiento ni desenfoque: solo un fundido breve */
+@media (prefers-reduced-motion: reduce) {
+	.intro :is([data-intro], body > header),
+	.intro body::after {
+		animation-name: intro-fade;
+		animation-duration: 300ms;
+		animation-delay: 0ms;
+	}
+
+	.intro body::after {
+		animation-name: intro-unveil;
+	}
+}

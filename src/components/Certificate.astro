@@ -1,17 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
+import SectionHeading from "./common/SectionHeading.astro";
 import CardCertificate from "./common/CardCertificate.astro";
 ---
 
-<section id="certificates" class="py-16 md:py-20">
-  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-center gap-2 text-center">
-      <Icon name="ph:certificate" class="h-8 w-8 sm:h-10 sm:w-10 text-slate-700 dark:text-slate-300" />
-      <h1 class="py-2 text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl dark:text-slate-100">
-        Certificados
-      </h1>
-    </div>
-    <div class="mt-8 grid items-start gap-6 sm:grid-cols-2 2xl:grid-cols-4">
+<section id="certificates" class="py-16 md:py-24">
+  <div class="wrap">
+    <SectionHeading icon="hugeicons:certificate-01" title="Certificados" />
+    <ul class="mt-8 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
       <CardCertificate
         icon="devicon:laravel"
         iconPlatform="simple-icons:platzi"
@@ -52,7 +47,7 @@ import CardCertificate from "./common/CardCertificate.astro";
         icon="devicon:java"
         iconPlatform="simple-icons:platzi"
         namePlatform="Platzi"
-        title="Java Se Orientado a Objetos"
+        title="Java SE Orientado a Objetos"
         date="23 de Septiembre de 2024"
         time="16 Hrs"
       />
@@ -75,12 +70,12 @@ import CardCertificate from "./common/CardCertificate.astro";
       />
 
       <CardCertificate
-        icon="icon-park:certificate"
-        iconPlatform="icon-park:certificate"
+        icon="ph:certificate"
+        iconPlatform="ph:certificate"
         namePlatform="CertiProf"
         title="SCRUM Foundation Professional Certificate"
         date="15 de Mayo de 2024"
       />
-    </div>
+    </ul>
   </div>
 </section>

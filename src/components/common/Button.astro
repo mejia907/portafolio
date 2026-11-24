@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  variant?: "solid" | "outline";
+}
+
+const { variant = "outline", class: className, ...rest } = Astro.props;
+
+const variants = {
+  solid: "border-action bg-action text-on-action hover:border-action-hover hover:bg-action-hover",
+  outline: "border-line-strong text-ink hover:border-ink hover:bg-surface-raised",
+};
+---
+
+<a
+  class:list={[
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200 active:opacity-80",
+    variants[variant],
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</a>

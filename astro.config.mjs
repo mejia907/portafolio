@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config';
 import icon from 'astro-icon';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  integrations: [
-    icon(),
-    tailwind(),
-  ],
+  integrations: [icon()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

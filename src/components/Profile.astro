@@ -1,72 +1,63 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import Button from "./common/Button.astro";
+import IconLink from "./common/IconLink.astro";
 import profile from "../assets/perfil.webp";
 import curriculum from "../assets/docs/HOJA_DE_VIDA_ANDRES_FELIPE_MEJIA_RESTREPO.pdf";
+
+const nameWords = ["Andrés", "Felipe", "Mejía"];
 ---
 
 <section
   id="profile"
-  class="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 pb-16 pt-10 sm:px-6 md:pb-20 md:pt-16 lg:grid-cols-[auto,1fr] lg:gap-14 lg:px-8"
+  class="wrap grid scroll-mt-16 items-center gap-8 pb-8 max-md:justify-items-center max-md:text-center pt-10 md:grid-cols-[auto_1fr] md:gap-12 md:pb-12 md:pt-16 lg:gap-16"
 >
-  <div class="mx-auto">
-    <Image
-      src={profile}
-      alt="Andrés Felipe Mejía Restrepo"
-      class="h-56 w-56 rounded-full object-cover ring-4 ring-slate-200 shadow-xl shadow-slate-900/10 sm:h-72 sm:w-72 lg:h-80 lg:w-80 dark:ring-slate-700"
-    />
-  </div>
-  <div class="text-center lg:text-left">
-    <p class="text-base font-semibold text-slate-500 sm:text-lg dark:text-slate-400">Hola, soy</p>
-    <h1
-      class="mt-2 text-balance py-2 text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-slate-100"
-    >
-      Andrés Felipe Mejía
+  <Image
+    src={profile}
+    alt="Andrés Felipe Mejía Restrepo"
+    widths={[224, 320, 448, 640]}
+    sizes="(min-width: 1024px) 320px, (min-width: 768px) 224px, 176px"
+    loading="eager"
+    fetchpriority="high"
+    data-intro
+    style="--at: 350ms; --blur: 18px"
+    class="size-44 rounded-full object-cover ring-4 ring-line md:size-56 lg:size-80"
+  />
+  <div>
+    <h1 class="text-[clamp(2.25rem,1.6rem+3vw,3.75rem)] font-bold leading-[1.1] tracking-tight">
+      <span data-intro class="block font-normal text-muted" style="--at: 0ms">Hola, soy{" "}</span>
+      {
+        nameWords.map((word, index) => (
+          <>
+            <span data-intro class="inline-block" style={`--at: ${80 + index * 80}ms`}>{word}</span>{" "}
+          </>
+        ))
+      }
     </h1>
-    <p class="mt-3 text-lg font-semibold text-slate-600 sm:text-2xl dark:text-slate-300">
-      Desarrollador FullStack.
+    <p data-intro style="--at: 420ms; --blur: 8px" class="mt-4 text-xl font-medium sm:text-2xl">Desarrollador FullStack.</p>
+    <p data-intro style="--at: 490ms; --blur: 8px" class="mt-2 flex items-center gap-2 text-base text-muted max-md:justify-center">
+      <Icon name="hugeicons:location-01" class="size-5 shrink-0" aria-hidden="true" />
+      Manizales, Colombia
     </p>
-    <div
-      class="mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm sm:text-base dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
-    >
-      <Icon name="hugeicons:location-01" class="h-5 w-5" />
-      <span>Manizales, Colombia</span>
-    </div>
-    <div class="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-      <a
-        href={curriculum}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-full border border-slate-800 px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-300 dark:text-slate-100 dark:hover:bg-slate-200 dark:hover:text-slate-950"
-      >
+    <div data-intro style="--at: 560ms; --blur: 8px" class="mt-8 flex flex-wrap items-center gap-3 max-md:justify-center">
+      <Button variant="solid" href="#contact">Contacto</Button>
+      <Button href={curriculum} download="CV-Andres-Felipe-Mejia.pdf">
+        <Icon name="hugeicons:download-01" class="size-5" aria-hidden="true" />
         Descargar CV
-      </a>
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center rounded-full border border-slate-900 bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-slate-700 dark:border-slate-200 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
-      >
-        Contacto
-      </a>
-    </div>
-    <div class="mt-8 flex items-center justify-center gap-4 lg:justify-start">
-      <a
-        href="https://www.linkedin.com/in/andresfelipemejiar"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Perfil de LinkedIn"
-        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-      >
-        <Icon name="fa6-brands:linkedin" class="h-6 w-6" />
-      </a>
-      <a
-        href="https://github.com/mejia907"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Perfil de GitHub"
-        class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-slate-100"
-      >
-        <Icon name="fa6-brands:github" class="h-6 w-6" />
-      </a>
+      </Button>
+      <div class="flex gap-3 max-md:w-full max-md:justify-center">
+        <IconLink
+          href="https://www.linkedin.com/in/andresfelipemejiar"
+          icon="fa6-brands:linkedin"
+          label="Perfil de LinkedIn"
+        />
+        <IconLink
+          href="https://github.com/mejia907"
+          icon="fa6-brands:github"
+          label="Perfil de GitHub"
+        />
+      </div>
     </div>
   </div>
 </section>
