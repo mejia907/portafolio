@@ -2,10 +2,11 @@
 import '@fontsource-variable/archivo/wght.css';
 import archivo from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import '../styles/global.css';
+import { yearsOfExperience } from '../data/profile';
 
 const title = 'Andrés Felipe Mejía | Desarrollador full-stack en Manizales';
 const description =
-	'Desarrollador full-stack en Manizales, Colombia, con 13+ años de experiencia. Aplicaciones web y móviles con PHP, Laravel, Node.js, React y Next.js.';
+	`Desarrollador full-stack en Manizales, Colombia, con ${yearsOfExperience}+ años de experiencia. Aplicaciones web y móviles con PHP, Laravel, Node.js, React y Next.js.`;
 const url = new URL('/', Astro.site).href;
 const socialImage = new URL('/og.jpg', Astro.site).href;
 

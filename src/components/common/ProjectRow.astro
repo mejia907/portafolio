@@ -1,22 +1,16 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import ProjectLinks from "./ProjectLinks.astro";
+import TechnologyList from "./TechnologyList.astro";
+import type { ImageProject } from "../../data/projects";
 
-interface Props {
-  image: ImageMetadata;
-  title: string;
-  description: string;
-  url?: string;
-  github?: string;
-  offline?: boolean;
-}
+type Props = ImageProject;
 
-const { image, title, description, ...links } = Astro.props;
+const { image, title, description, technologies, url, github, offline } = Astro.props;
 ---
 
-<li data-reveal="both" class="group grid gap-x-8 gap-y-4 border-t border-line py-6 sm:grid-cols-[13rem_1fr] lg:grid-cols-[13rem_1fr_auto] lg:items-center">
-  <div class="aspect-3/2 overflow-hidden rounded-lg border border-line">
+<li data-stagger="3" class="group grid gap-x-8 gap-y-4 border-t border-line py-6 sm:grid-cols-[13rem_1fr] lg:grid-cols-[13rem_1fr_auto] lg:items-center">
+  <div data-reveal="both" class="aspect-3/2 overflow-hidden rounded-lg border border-line">
     <Image
       src={image}
       alt={`Captura de ${title}`}
@@ -25,14 +19,12 @@ const { image, title, description, ...links } = Astro.props;
       class="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-104"
     />
   </div>
-  <div class="min-w-0">
+  <div data-reveal="both" class="min-w-0">
     <h4 class="text-lg font-semibold leading-snug">{title}</h4>
     <p class="mt-1.5 max-w-prose text-base leading-relaxed">{description}</p>
-    <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Tecnologías">
-      <slot />
-    </ul>
+    <TechnologyList items={technologies} class="mt-3" />
   </div>
-  <div class="flex flex-wrap gap-x-6 sm:col-start-2 lg:col-start-3 lg:flex-col lg:items-start">
-    <ProjectLinks title={title} {...links} />
+  <div data-reveal="both" class="flex flex-wrap gap-x-6 sm:col-start-2 lg:col-start-3 lg:flex-col lg:items-start">
+    <ProjectLinks {...{ title, url, github, offline }} />
   </div>
 </li>

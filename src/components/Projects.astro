@@ -1,114 +1,49 @@
 ---
 import FeaturedApp from "./FeaturedApp.astro";
 import Card from "./common/Card.astro";
-import sintraipsu from "../assets/images/sintraipsu.webp";
-import cerrajero from "../assets/images/cerrajero.webp";
-import enrutarcol from "../assets/images/enrutarcol.webp";
-import tasksoft from "../assets/images/tasksoft.webp";
-import api_games from "../assets/images/api_games.webp";
-import poke_api from "../assets/images/poke_api.webp";
-import cinemapedia from "../assets/images/cinemapedia.webp";
-import linktree_clone from "../assets/images/linktree_clone.webp";
 import SectionHeading from "./common/SectionHeading.astro";
 import ProjectRow from "./common/ProjectRow.astro";
-import Badge from "./common/Badge.astro";
+import { projects, type AppProject, type ImageProject } from "../data/projects";
+
+const apps = projects.filter((project): project is AppProject => project.placement === "app");
+const cards = projects.filter((project): project is ImageProject => project.placement === "card");
+const rows = projects.filter((project): project is ImageProject => project.placement === "list");
 ---
 
 <section id="projects" class="band">
   <div class="wrap">
     <SectionHeading title="Proyectos" />
-    <FeaturedApp />
-    <div data-stagger="3" class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:max-lg:[&>:first-child]:col-span-2">
-      <Card
-        image={enrutarcol}
-        title="Enrutarcol"
-        description="Aplicación web para gestionar solicitudes de enrutamiento, clientes y usuarios."
-        offline
-      >
-        <Badge image="lineicons:react" title="React" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-        <Badge image="lineicons:nodejs" title="Node.js" />
-        <Badge image="lineicons:prisma" title="Prisma" />
-      </Card>
-
-      <Card
-        image={sintraipsu}
-        title="Sintraipsu"
-        description="Sitio de un sindicato con administrador propio para sus afiliados, integrantes, noticias y celebraciones."
-        offline
-      >
-        <Badge image="lineicons:react" title="React" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-        <Badge image="lineicons:nodejs" title="Node.js" />
-        <Badge image="lineicons:prisma" title="Prisma" />
-      </Card>
-
-      <Card
-        image={cerrajero}
-        title="Cerrajero Alvarez"
-        description="Página de un servicio de cerrajería con acceso directo a WhatsApp, teléfono y redes sociales."
-        url="https://cerrajeroalvarez.vercel.app/"
-        github="https://github.com/mejia907/cerrajeroalvarez"
-      >
-        <Badge image="lineicons:astro" title="Astro" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      </Card>
-    </div>
-
-    <h3 data-reveal="both" class="mt-16 text-2xl font-semibold tracking-[-0.01em]">Otros proyectos</h3>
-    <ul class="mt-6">
-      <ProjectRow
-        image={linktree_clone}
-        title="Linktree-Clone"
-        description="Clon de Linktree con inicio de sesión en Clerk. Cada usuario crea, edita, comparte y elimina sus enlaces, y personaliza su perfil."
-        url="https://linktree-clone-eosin.vercel.app/"
-        github="https://github.com/mejia907/linktree-clone/"
-      >
-        <Badge image="lineicons:nextjs" title="Next.js" />
-        <Badge image="cbi:neon" title="Neon" />
-        <Badge image="simple-icons:clerk" title="Clerk" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      </ProjectRow>
-
-      <ProjectRow
-        image={tasksoft}
-        title="Task-Soft"
-        description="Gestor de tareas en Laravel Livewire para crearlas, editarlas, compartirlas y eliminarlas."
-        github="https://github.com/mejia907/tasksoft/"
-      >
-        <Badge image="lineicons:laravel" title="Laravel" />
-        <Badge image="devicon-plain:livewire" title="Livewire" />
-      </ProjectRow>
-
-      <ProjectRow
-        image={api_games}
-        title="API Games"
-        description="Catálogo de videojuegos en Angular 14 que consulta la API de FreeToGame a través de NestJS."
-        github="https://github.com/mejia907/api-games"
-      >
-        <Badge image="lineicons:angular" title="Angular" />
-        <Badge image="devicon-plain:nestjs" title="NestJS" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      </ProjectRow>
-
-      <ProjectRow
-        image={poke_api}
-        title="Poke API"
-        description="Aplicación en Qwik que lista Pokémon desde PokéAPI y muestra la ficha de cada uno, con interfaz en Tailwind."
-        github="https://github.com/mejia907/pokeapp-qwik"
-      >
-        <Badge image="devicon-plain:qwik" title="Qwik" />
-        <Badge image="lineicons:tailwindcss" title="Tailwind" />
-      </ProjectRow>
-      <ProjectRow
-        image={cinemapedia}
-        title="Cinemapedia"
-        description="App en Flutter con la cartelera de cine: muestra el detalle de cada película y permite marcar favoritas."
-        github="https://github.com/mejia907/cinemapedia"
-      >
-        <Badge image="devicon-plain:flutter" title="Flutter" />
-        <Badge image="devicon-plain:dart" title="Dart" />
-      </ProjectRow>
-    </ul>
+    {apps.map((project, index) => <FeaturedApp project={project} class={index === 0 ? "mt-10" : "mt-5"} />)}
+    {
+      cards.length > 0 && (
+        <div
+          data-stagger="3"
+          class:list={[
+            apps.length > 0 ? "mt-5" : "mt-10",
+            "grid gap-5 sm:grid-cols-2 lg:grid-cols-3",
+            // En dos columnas, un número impar dejaría un hueco: la primera ocupa todo el ancho
+            cards.length % 2 === 1 && "sm:max-lg:[&>:first-child]:col-span-2",
+          ]}
+        >
+          {cards.map((project) => (
+            <Card {...project} />
+          ))}
+        </div>
+      )
+    }
+    {
+      rows.length > 0 && (
+        <>
+          <h3 data-reveal="both" class="mt-16 text-2xl font-semibold tracking-[-0.01em]">
+            Otros proyectos
+          </h3>
+          <ul class="mt-6">
+            {rows.map((project) => (
+              <ProjectRow {...project} />
+            ))}
+          </ul>
+        </>
+      )
+    }
   </div>
 </section>

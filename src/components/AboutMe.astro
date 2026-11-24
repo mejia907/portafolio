@@ -3,13 +3,16 @@ import { Icon } from "astro-icon/components";
 import Button from "./common/Button.astro";
 import ColombiaMap from "./ColombiaMap.astro";
 import SectionHeading from "./common/SectionHeading.astro";
+import { certificates } from "../data/certificates";
+import { yearsOfExperience } from "../data/profile";
+import { projects } from "../data/projects";
 import curriculum from "../assets/docs/HOJA_DE_VIDA_ANDRES_FELIPE_MEJIA_RESTREPO.pdf";
 
 const facts = [
-  { value: "13+", label: "Años de backend" },
+  { value: `${yearsOfExperience}+`, label: "Años de backend" },
   { value: "4+", label: "Años de frontend" },
-  { value: "9", label: "Proyectos aquí" },
-  { value: "8", label: "Certificados" },
+  { value: projects.length, label: "Proyectos aquí" },
+  { value: certificates.length, label: "Certificados" },
 ];
 ---
 
@@ -17,13 +20,21 @@ const facts = [
   <div class="wrap grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
     <div>
       <SectionHeading title="Sobre mí" />
-      <p data-reveal="in" class="mt-6 max-w-prose text-base leading-relaxed sm:text-lg">
-        Soy ingeniero de sistemas y desarrollo software desde 2013. Empecé
-        personalizando ERP y CRM en PHP, y con el tiempo sumé el frontend: hoy
-        construyo aplicaciones completas con Laravel, Node.js, React y Next.js.
-        Primero entiendo qué necesita el negocio; después elijo la solución. Hoy
-        también desarrollo con Claude.
-      </p>
+      <div data-reveal="in" class="mt-6 max-w-prose space-y-4 text-base leading-relaxed sm:text-lg">
+        <p>
+          Empecé en 2013 personalizando ERP en PHP y seguí con CRM: SugarCRM, SuiteCRM, Vtiger. Ahí aprendí a
+          escuchar primero: antes de programar, quiero entender cómo funciona tu negocio y qué te está
+          quitando tiempo.
+        </p>
+        <p>
+          Desde entonces he trabajado en sistemas para salud, finanzas y comercio, y hoy también hago
+          aplicaciones móviles y productos propios. En{" "}
+          <a
+            href="#projects"
+            class="font-medium text-ink underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
+          >Proyectos</a> puedes ver en qué ando.
+        </p>
+      </div>
 
       <dl data-stagger="4" class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
         {
@@ -64,7 +75,7 @@ const facts = [
             <dt class="text-sm text-muted">Educación</dt>
             <dd class="font-medium text-ink">Ingeniería de Sistemas</dd>
             <dd class="mt-1 font-medium text-ink">
-              Tecnólogo en Análisis y desarrollo de Sistemas de Información
+              Tecnólogo en Análisis y Desarrollo de Sistemas de Información
             </dd>
           </div>
         </div>

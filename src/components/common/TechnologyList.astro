@@ -1,0 +1,15 @@
+---
+import Badge from "./Badge.astro";
+import { technologies, type ImageProject } from "../../data/projects";
+
+interface Props {
+  items: ImageProject["technologies"];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<ul class:list={[className, "flex flex-wrap gap-1.5"]} aria-label="Tecnologías">
+  {items.map((item) => <Badge image={technologies[item].icon} title={technologies[item].title} />)}
+</ul>

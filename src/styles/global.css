@@ -283,12 +283,15 @@
 @media screen and (prefers-reduced-motion: no-preference) {
 	@supports (animation-timeline: view()) {
 		[data-reveal] {
-			--from: calc(var(--i, 0) * 2.25rem);
+			--from: calc(var(--i, 0) * var(--step, 2.25rem));
+			/* Proporcional a la altura: en una tarjeta alta, un tramo fijo acaba antes de que se vea */
+			--enter: clamp(12rem, 75%, min(26rem, 42vh));
+			--leave: clamp(8rem, 45%, 14rem);
 			/* En variable: el minificador fundiría view() en el atajo animation, que no lo admite */
 			--timeline: view(block 4.5rem 0px);
 			animation: reveal-in 1ms linear both;
 			animation-timeline: var(--timeline);
-			animation-range: entry var(--from) entry calc(12rem + var(--from));
+			animation-range: entry var(--from) entry calc(var(--enter) + var(--from));
 		}
 
 		/* La salida ocurre al final, cuando el elemento ya pasa bajo el menú */
@@ -298,8 +301,8 @@
 				reveal-out 1ms linear forwards;
 			animation-timeline: var(--timeline);
 			animation-range:
-				entry var(--from) entry calc(12rem + var(--from)),
-				exit max(0%, 100% - 8rem) exit 100%;
+				entry var(--from) entry calc(var(--enter) + var(--from)),
+				exit max(0%, 100% - var(--leave)) exit 100%;
 		}
 
 		/* Nunca a medio aparecer mientras se usa con el teclado */
@@ -315,8 +318,16 @@
 			animation-range: entry 2rem entry 16rem;
 		}
 
-		/* Escalonado por columnas, solo donde las hay */
+		/* Escalonado por columnas, solo donde las hay: con menos columnas, más distancia entre ellas */
 		@media (width >= 64rem) {
+			[data-stagger='3'] > * {
+				--step: min(5rem, 7vh);
+			}
+
+			[data-stagger='4'] > * {
+				--step: min(4rem, 6vh);
+			}
+
 			[data-stagger='3'] > :nth-child(3n + 2),
 			[data-stagger='4'] > :nth-child(4n + 2),
 			[data-stagger='7'] > :nth-child(7n + 2) {
